@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Basudev Dhakal – Full-stack Web Developer</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- EmailJS – sends form messages directly to your Gmail -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    (function(){
+      // Paste your EmailJS Public Key here after signing up at emailjs.com
+      emailjs.init({ publicKey: "X4RFfPNPley4zmYaM" });
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ─── NAVBAR ─── -->
+  <nav>
+    <a href="#hero" class="nav-logo">Basudev <span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#hero" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-cta">Hire Me</button>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-tag">Hello!</div>
+      <h1 class="hero-name">I'm <span>Basudev Dhakal</span></h1>
+      <p class="hero-role">Full-Stack Web Developer</p>
+      <p class="hero-desc">
+        Passionate about building powerful digital experiences from the ground up. I craft clean, scalable, and high-performance web applications that drive real results — from backend architecture to pixel-perfect front-ends.
+      </p>
+      <a href="#contact" class="btn-primary">Let's Talk</a>
+      <div class="hero-socials">
+        <a href="https://wa.me/9779849330437" target="_blank" class="social-icon" aria-label="WhatsApp">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="X/Twitter">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="Instagram">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <circle cx="12" cy="12" r="4" fill="#0a0a0a"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="#0a0a0a"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-ring">
+        <img src="assets/profile.jpg" alt="Basudev Dhakal" />
+      </div>
+    </div>
+
+    <div class="scroll-indicator">
+      <div class="scroll-line"></div>
+      Scroll
+    </div>
+  </section>
+
+  <!-- ─── ABOUT ─── -->
+  <section id="about">
+    <h2 class="section-title fade-up">About <span>Me</span></h2>
+    <div class="about-inner">
+      <div class="about-photo-wrap fade-up">
+        <div class="about-photo-ring">
+          <img src="assets/profile.jpg" alt="Basudev Dhakal" />
+        </div>
+        <div class="about-role">Full-Stack Web Developer</div>
+      </div>
+      <div class="about-text fade-up">
+        <p>
+          I'm <strong>Basudev Dhakal</strong>, a Full-Stack Web Developer with a passion for building seamless digital experiences. I specialize in turning complex problems into elegant, functional solutions.
+        </p>
+        <p>
+          With expertise across both front-end and back-end technologies, I bring a holistic approach to every project — from initial architecture planning through to deployment and optimization. I believe great software is both technically sound and visually compelling.
+        </p>
+        <p>
+          When I'm not coding, I'm exploring new technologies, contributing to open-source projects, and constantly leveling up my craft. I'm ready to bring your next idea to life with clean code and rock-solid execution.
+        </p>
+        <a href="#contact" class="btn-hire">Hire Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SKILLS ─── -->
+  <section id="skills">
+    <h2 class="section-title fade-up">My <span>Skills</span></h2>
+    <div class="skills-grid">
+
+      <div class="skill-item fade-up">
+        <div class="skill-header">
+          <span class="skill-name">HTML</span>
+          <span class="skill-pct">95%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+      </div>
+
+      <div class="skill-item fade-up">
+        <div class="skill-header">
+          <span class="skill-name">CSS</span>
+          <span class="skill-pct">88%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+      </div>
+
+      <div class="skill-item fade-up">
+        <div class="skill-header">
+          <span class="skill-name">JavaScript</span>
+          <span class="skill-pct">82%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
+      </div>
+
+      <div class="skill-item fade-up">
+        <div class="skill-header">
+          <span class="skill-name">Figma</span>
+          <span class="skill-pct">75%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
+      </div>
+
+      <div class="skill-item fade-up">
+        <div class="skill-header">
+          <span class="skill-name">React</span>
+          <span class="skill-pct">78%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+      </div>
+
+      <div class="skill-item fade-up">
+        <div class="skill-header">
+          <span class="skill-name">Node.js</span>
+          <span class="skill-pct">70%</span>
+        </div>
+        <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section id="services">
+    <h2 class="section-title fade-up">My <span>Services</span></h2>
+    <div class="services-grid">
+
+      <div class="service-card fade-up">
+        <span class="service-icon">⚡</span>
+        <h3 class="service-title">Front-End Development</h3>
+        <p class="service-desc">Building lightning-fast, responsive interfaces using modern frameworks. Pixel-perfect implementations from Figma designs to live, production-ready code.</p>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-icon">🔧</span>
+        <h3 class="service-title">Back-End Development</h3>
+        <p class="service-desc">Robust server architectures, RESTful APIs, and database design. Scalable systems built to handle real-world load with security-first principles.</p>
+      </div>
+
+      <div class="service-card fade-up">
+        <span class="service-icon">🎨</span>
+        <h3 class="service-title">UI / UX Design</h3>
+        <p class="service-desc">Translating business requirements into intuitive user journeys. From wireframes and prototypes to polished, accessible final designs in Figma.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── PORTFOLIO ─── -->
+  <section id="portfolio">
+    <h2 class="section-title fade-up">My <span>Portfolio</span></h2>
+    <div class="portfolio-grid">
+
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-card-inner">
+          <div class="portfolio-num">01</div>
+          <div class="portfolio-label">E-Commerce App</div>
+        </div>
+        <div class="portfolio-card-overlay">
+          <h3>E-Commerce App</h3>
+          <p>React · Node.js · MongoDB</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-card-inner">
+          <div class="portfolio-num">02</div>
+          <div class="portfolio-label">Dashboard UI</div>
+        </div>
+        <div class="portfolio-card-overlay">
+          <h3>Dashboard UI</h3>
+          <p>React · Tailwind · REST API</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-card-inner">
+          <div class="portfolio-num">03</div>
+          <div class="portfolio-label">Portfolio Site</div>
+        </div>
+        <div class="portfolio-card-overlay">
+          <h3>Portfolio Site</h3>
+          <p>HTML · CSS · JavaScript</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-card-inner">
+          <div class="portfolio-num">04</div>
+          <div class="portfolio-label">Blog Platform</div>
+        </div>
+        <div class="portfolio-card-overlay">
+          <h3>Blog Platform</h3>
+          <p>Next.js · Prisma · PostgreSQL</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-card-inner">
+          <div class="portfolio-num">05</div>
+          <div class="portfolio-label">Mobile App UI</div>
+        </div>
+        <div class="portfolio-card-overlay">
+          <h3>Mobile App UI</h3>
+          <p>React Native · Figma</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-card-inner">
+          <div class="portfolio-num">06</div>
+          <div class="portfolio-label">SaaS Landing Page</div>
+        </div>
+        <div class="portfolio-card-overlay">
+          <h3>SaaS Landing Page</h3>
+          <p>HTML · CSS · GSAP</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact">
+    <h2 class="section-title fade-up">Get In <span>Touch</span></h2>
+    <div class="contact-inner fade-up">
+      <p>Have a project in mind? Let's build something extraordinary together. Drop a message and I'll get back to you within 24 hours.</p>
+      <form class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Om Bikram" />
+          </div>
+          <div class="form-group">
+            <label>Your Email</label>
+            <input type="email" placeholder="om@example.com" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" placeholder="Project Inquiry" />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="6" placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-logo">Basudev <span>.</span></div>
+    <p>© 2026 Crafted by Basudev Dhakal. <span>♥</span> </p>
+    <div class="hero-socials">
+      <a href="https://wa.me/9779849330437" target="_blank" class="social-icon" aria-label="WhatsApp">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+      </a>
+      <a href="#" class="social-icon" aria-label="X">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="social-icon" aria-label="Instagram">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4" fill="#0a0a0a"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="#0a0a0a"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
