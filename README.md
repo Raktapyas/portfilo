@@ -23,17 +23,6 @@ No limits.
 
 ---
 
-## 🔥 SYSTEM MANIFEST
-
-* ☠️ UI forged from nothingness
-* 🩸 Glitch-driven visual system
-* ⚡ Hyper-reactive interface flow
-* 🧠 Modular but unpredictable architecture
-* 🌌 Dark-cyber aesthetic (void protocol)
-* 📱 Cross-device infiltration
-
----
-
 ## 🕷️ VISUAL FEED
 
 ```md
@@ -41,49 +30,6 @@ No limits.
 ```
 
 > Rendering layer unstable. Visual data incoming.
-
----
-
-## ⚙️ CORE TECHNOLOGY
-
-**Interface Layer**
-
-* HTML5
-* CSS3
-* JavaScript
-
-**Control Layer**
-
-* Git
-* GitHub
-* VS Code
-
-> No frameworks. No chains. Only control.
-
----
-
-## 🧩 STRUCTURE MAP
-
-```
-portfilo/
-├── index.html      // entry portal
-├── style.css       // visual corruption engine
-├── script.js       // behavior controller
-└── assets/         // fragments
-```
-
----
-
-## 🚨 EXECUTION PROTOCOL
-
-```bash
-git clone https://github.com/Raktapyas/portfilo
-cd portfilo
-open index.html
-```
-
-> Do not deploy blindly.
-> You are entering an unstable system.
 
 ---
 
@@ -108,16 +54,6 @@ Every animation is controlled chaos.
 
 ---
 
-## 🔮 EVOLUTION PATH
-
-* 🧬 WebGL shader corruption layer
-* 🧠 Dynamic entity-driven UI
-* 🛡 Secure backend core
-* ⚡ Real-time interaction system
-* ☠️ Fully immersive interface state
-
----
-
 ## 🧑‍💻 ENTITY
 
 **Raktapyas**
@@ -125,6 +61,7 @@ Every animation is controlled chaos.
 > Architect of controlled chaos
 
 GitHub: https://github.com/Raktapyas
+GitLab: https://gitlab.com/raktapyas
 
 ---
 
