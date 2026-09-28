@@ -1,286 +1,911 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Basudev Dhakal – Full-stack Web Developer</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <!-- EmailJS – sends form messages directly to your Gmail -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>
-    (function(){
-      // Paste your EmailJS Public Key here after signing up at emailjs.com
-      emailjs.init({ publicKey: "X4RFfPNPley4zmYaM" });
-    })();
-  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAKTA PYAS — Portfolio OS 2050 // Basudev Dhakal</title>
+<meta name="description" content="Basudev Dhakal (Rakta Pyas) — Laravel & frontend developer, Kathmandu. Portfolio OS v2050.1. Open to work.">
+<meta name="theme-color" content="#060809">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23060809'/><text x='32' y='44' font-family='monospace' font-size='34' fill='%233cf2ce' text-anchor='middle'>R</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060809; --bg2:#0a0e10; --panel:#0c1215;
+  --line:rgba(120,220,205,.16); --line2:rgba(120,220,205,.34);
+  --text:#d9e7e4; --dim:#6f8783; --dim2:#465654;
+  --acc:#3cf2ce; --amber:#ffb454; --danger:#ff5d5d;
+  --f-d:'Chakra Petch',sans-serif;
+  --f-m:'JetBrains Mono',monospace;
+}
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:5rem}
+body{background:var(--bg);color:var(--text);font-family:var(--f-d);overflow-x:clip;
+  -webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;line-height:1.5}
+body.lock{overflow:hidden}
+::selection{background:var(--acc);color:#04110d}
+::-webkit-scrollbar{width:9px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#17322d;border-radius:99px}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{background:none;border:0;color:inherit;font:inherit;cursor:pointer}
+ul{list-style:none}
+.mono{font-family:var(--f-m);font-size:.68rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+section{position:relative;padding:7.5rem 2rem;max-width:1280px;margin-inline:auto;scroll-margin-top:4.5rem}
+:focus-visible{outline:1px solid var(--acc);outline-offset:3px}
+/* classic cursor — untouched; subtle hover states only */
+
+/* ============ Global atmosphere ============ */
+.grid-bg{position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:88px 88px;opacity:.16;mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000 30%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000 30%,transparent 100%)}
+.scanlines{position:fixed;inset:0;z-index:2100;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 1px,transparent 1px 4px)}
+.sweep{position:fixed;left:0;right:0;top:-10%;height:12%;z-index:2090;pointer-events:none;opacity:.05;
+  background:linear-gradient(180deg,transparent,var(--acc),transparent);
+  animation:sweep 9s linear infinite}
+@keyframes sweep{to{top:110%}}
+#scrollbar{position:fixed;top:0;left:0;width:100%;height:2px;z-index:1200;background:transparent}
+#scrollbar i{display:block;height:100%;width:100%;background:var(--acc);transform:scaleX(0);transform-origin:left}
+
+/* ============ Boot ============ */
+#boot{position:fixed;inset:0;z-index:3000;background:var(--bg);display:flex;align-items:center;justify-content:center;
+  transition:transform .8s cubic-bezier(.76,0,.24,1),visibility 0s linear .8s}
+#boot.done{transform:translateY(-100%);visibility:hidden}
+.boot-in{width:min(560px,90vw);font-family:var(--f-m);font-size:.78rem;letter-spacing:.04em;color:var(--dim)}
+.boot-head{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:.8rem;margin-bottom:1.1rem;color:var(--acc)}
+#bootLog{min-height:11.5em}
+#bootLog div{opacity:0;animation:bline .25s forwards}
+#bootLog div::before{content:'> ';color:var(--acc)}
+#bootLog div.ok::before{content:'[OK] ';color:var(--acc)}
+@keyframes bline{to{opacity:1}}
+.boot-bar{margin-top:1.2rem;height:3px;background:rgba(120,220,205,.12);position:relative;overflow:hidden}
+.boot-bar i{position:absolute;inset:0;background:var(--acc);transform:scaleX(0);transform-origin:left}
+.boot-foot{display:flex;justify-content:space-between;margin-top:.7rem;color:var(--dim2)}
+#bootPct{color:var(--acc)}
+#boot.done .boot-in{opacity:0;transition:opacity .3s}
+
+/* ============ HUD frame + nav ============ */
+.hud-corner{position:fixed;width:22px;height:22px;z-index:1150;pointer-events:none;border:0 solid var(--line2)}
+.hud-corner.tl{top:14px;left:14px;border-top-width:1px;border-left-width:1px}
+.hud-corner.tr{top:14px;right:14px;border-top-width:1px;border-right-width:1px}
+.hud-corner.bl{bottom:14px;left:14px;border-bottom-width:1px;border-left-width:1px}
+.hud-corner.br{bottom:14px;right:14px;border-bottom-width:1px;border-right-width:1px}
+nav#top{position:fixed;inset:0 0 auto 0;z-index:1100;display:flex;align-items:center;justify-content:space-between;
+  gap:1.4rem;padding:.95rem 2.4rem;background:rgba(6,8,9,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line)}
+.logo{font-weight:700;letter-spacing:.06em;font-size:.95rem;display:flex;align-items:center;gap:.6rem}
+.logo .sig{width:8px;height:8px;background:var(--acc);animation:blink 2.4s steps(2) infinite}
+@keyframes blink{50%{opacity:.15}}
+.logo b{color:var(--acc);font-weight:700}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{position:relative;padding:.15rem 0;transition:color .25s}
+.nav-links a::before{content:'//';color:var(--acc);margin-right:.5em;opacity:0;transition:opacity .25s}
+.nav-links a:hover{color:var(--acc)}
+.nav-links a:hover::before{opacity:1}
+.nav-right{display:flex;align-items:center;gap:1.3rem}
+#clock{color:var(--dim)}
+#clock b{color:var(--text);font-weight:500}
+.cv-mini{border:1px solid var(--line2);padding:.5em 1em;color:var(--acc);transition:background .25s,color .25s}
+.cv-mini:hover{background:var(--acc);color:#04110d}
+#navToggle{display:none;color:var(--acc);letter-spacing:.12em}
+
+/* ============ Buttons ============ */
+.btn{display:inline-flex;align-items:center;gap:.7em;font-family:var(--f-m);font-size:.72rem;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;padding:.95em 1.7em;border:1px solid var(--line2);color:var(--text);
+  position:relative;transition:color .25s,border-color .25s;background:transparent}
+.btn::before{content:'';position:absolute;inset:0;background:var(--acc);transform:scaleX(0);transform-origin:right;
+  transition:transform .35s cubic-bezier(.76,0,.24,1);z-index:-1}
+.btn:hover{color:#04110d;border-color:var(--acc)}
+.btn:hover::before{transform:scaleX(1);transform-origin:left}
+.btn.solid{background:var(--acc);color:#04110d;border-color:var(--acc)}
+.btn.solid::before{background:#04110d}
+.btn.solid:hover{color:var(--acc)}
+.btn svg{width:.9em;height:.9em;flex:none}
+
+/* ============ Hero ============ */
+#hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:9rem}
+.hero-meta{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;color:var(--dim);
+  border-bottom:1px solid var(--line);padding-bottom:.9rem;margin-bottom:auto}
+.hero-meta .op{display:flex;align-items:center;gap:.7rem;color:var(--text)}
+.hero-meta .op img{width:30px;height:30px;border-radius:50%;object-fit:cover;filter:grayscale(1);border:1px solid var(--line2)}
+.hero-title-wrap{margin-block:auto;padding:3.5rem 0 2.5rem}
+.hero-kicker{color:var(--acc);margin-bottom:1.2rem;display:flex;align-items:center;gap:.9rem}
+.hero-kicker::after{content:'';height:1px;flex:0 0 90px;background:var(--line2)}
+.glitch{position:relative;font-weight:700;text-transform:uppercase;line-height:.92;letter-spacing:-.015em;
+  font-size:clamp(3.4rem,13.5vw,12.5rem);display:inline-block}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;opacity:0}
+.glitch.on::before{opacity:.85;color:var(--acc);animation:gl1 .34s steps(3) both}
+.glitch.on::after{opacity:.85;color:var(--amber);animation:gl2 .34s steps(3) both}
+@keyframes gl1{0%{clip-path:inset(12% 0 78% 0);transform:translate(-.06em,-.02em)}33%{clip-path:inset(64% 0 8% 0);transform:translate(.05em,.01em)}66%{clip-path:inset(30% 0 52% 0);transform:translate(-.04em,.02em)}100%{clip-path:inset(80% 0 4% 0);transform:none}}
+@keyframes gl2{0%{clip-path:inset(70% 0 10% 0);transform:translate(.06em,.02em)}33%{clip-path:inset(8% 0 82% 0);transform:translate(-.05em,-.01em)}66%{clip-path:inset(48% 0 30% 0);transform:translate(.04em,-.02em)}100%{clip-path:inset(4% 0 84% 0);transform:none}}
+.hero-sub{font-family:var(--f-m);color:var(--dim);font-size:clamp(.78rem,1.6vw,1rem);letter-spacing:.14em;text-transform:uppercase;margin-top:1.6rem}
+.hero-sub b{color:var(--text);font-weight:500}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.4rem}
+.readout{display:flex;gap:0;border:1px solid var(--line);border-left:0;border-right:0;margin-top:3.2rem}
+.readout > div{flex:1;padding:.85rem 1.4rem;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:.3rem}
+.readout > div:first-child{border-left:0;padding-left:0}
+.readout .k{color:var(--dim2)}
+.readout .v{font-family:var(--f-m);font-size:.82rem;color:var(--text)}
+.readout .v.acc{color:var(--acc)}
+.readout .v.amber{color:var(--amber)}
+.status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--amber);margin-right:.55em;
+  animation:blink 1.6s steps(2) infinite;vertical-align:1px}
+.scrolldown{position:absolute;bottom:1.6rem;left:50%;transform:translateX(-50%);color:var(--dim);display:flex;flex-direction:column;align-items:center;gap:.5rem}
+.scrolldown i{display:block;width:1px;height:44px;background:var(--line2);position:relative;overflow:hidden}
+.scrolldown i::after{content:'';position:absolute;left:0;top:-40%;width:100%;height:40%;background:var(--acc);animation:drop 1.8s cubic-bezier(.76,0,.24,1) infinite}
+@keyframes drop{to{top:110%}}
+
+/* ============ Ticker ============ */
+.ticker{border-block:1px solid var(--line);overflow:hidden;padding:.8rem 0;position:relative}
+.ticker-track{display:flex;width:max-content;animation:tick 28s linear infinite}
+.ticker-set{display:flex;align-items:center;flex:none;font-family:var(--f-m);font-size:.78rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--dim);white-space:nowrap}
+.ticker-set b{color:var(--acc);font-weight:500;margin:0 1.6rem}
+.ticker-set em{color:var(--dim2);font-style:normal;margin:0 1.6rem}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ============ Section head ============ */
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;
+  margin-bottom:3.4rem;border-bottom:1px solid var(--line);padding-bottom:1rem}
+.sec-head h2{font-size:clamp(1.7rem,3.4vw,2.6rem);font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.sec-head h2 span{color:var(--acc);font-family:var(--f-m);font-size:.55em;font-weight:500;margin-right:.9em;vertical-align:.35em;letter-spacing:.14em}
+.sec-head .mono{color:var(--dim)}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ Ident (about) ============ */
+.ident-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:3.5rem;align-items:start}
+.id-card{border:1px solid var(--line);background:var(--panel);position:relative}
+.id-card::before,.id-card::after,.id-card .cb::before,.id-card .cb::after{content:'';position:absolute;width:14px;height:14px;border:0 solid var(--acc)}
+.id-card::before{top:-1px;left:-1px;border-top-width:2px;border-left-width:2px}
+.id-card::after{top:-1px;right:-1px;border-top-width:2px;border-right-width:2px}
+.id-card .cb::before{bottom:-1px;left:-1px;border-bottom-width:2px;border-left-width:2px}
+.id-card .cb::after{bottom:-1px;right:-1px;border-bottom-width:2px;border-right-width:2px}
+.id-photo{position:relative;aspect-ratio:4/4.6;overflow:hidden;background:var(--bg2)}
+.id-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 16%;filter:grayscale(1) contrast(1.08);transition:filter .6s,transform .8s cubic-bezier(.22,1,.36,1)}
+.id-card:hover .id-photo img{filter:grayscale(.1) contrast(1);transform:scale(1.03)}
+.id-photo::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(60,242,206,.05) 0 1px,transparent 1px 4px);pointer-events:none}
+.id-tagline{position:absolute;left:.9rem;top:.9rem;z-index:2;background:rgba(6,8,9,.8);border:1px solid var(--line2);
+  padding:.35em .8em;color:var(--acc)}
+.id-body{padding:1.3rem 1.3rem 1.4rem;border-top:1px solid var(--line)}
+.id-row{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px dashed rgba(120,220,205,.14)}
+.id-row:last-child{border-bottom:0}
+.id-row .k{color:var(--dim2)}
+.id-row .v{font-family:var(--f-m);font-size:.74rem;text-align:right}
+.id-row .v.acc{color:var(--acc)}
+.id-row .v.amber{color:var(--amber)}
+.bio p{color:var(--dim);font-size:1.02rem;line-height:1.7;max-width:58ch}
+.bio p+p{margin-top:1.3rem}
+.bio strong{color:var(--text);font-weight:600}
+.bio .lead{color:var(--text);font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.45;font-weight:500}
+.bio .lead em{font-style:normal;color:var(--acc)}
+.records{margin-top:3.2rem;border:1px solid var(--line)}
+.records-head{display:flex;justify-content:space-between;padding:.85rem 1.3rem;border-bottom:1px solid var(--line);color:var(--dim)}
+.record{display:grid;grid-template-columns:110px 1fr auto;gap:1.6rem;align-items:baseline;padding:1.15rem 1.3rem;border-bottom:1px solid rgba(120,220,205,.1)}
+.record:last-child{border-bottom:0}
+.record .yr{color:var(--dim2)}
+.record h3{font-weight:600;font-size:1.02rem;letter-spacing:.02em;text-transform:uppercase}
+.record .deg{color:var(--dim);font-size:.85rem;margin-top:.2rem}
+.record .score{font-family:var(--f-m);font-size:.78rem;color:var(--acc)}
+
+/* ============ Archive (works) ============ */
+.arch-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.4rem}
+.mod{grid-column:span 3;border:1px solid var(--line);background:var(--panel);text-align:left;position:relative;
+  transition:border-color .3s,transform .5s cubic-bezier(.22,1,.36,1)}
+.mod:first-child{grid-column:span 6}
+.mod:hover{border-color:var(--acc);transform:translateY(-5px)}
+.mod-fig{position:relative;aspect-ratio:16/8.4;overflow:hidden;background:var(--bg2)}
+.mod:first-child .mod-fig{aspect-ratio:16/6.6}
+.mod-fig img{width:100%;height:100%;object-fit:cover;object-position:50% 16%;filter:grayscale(1) contrast(1.05);
+  transition:filter .6s,transform .9s cubic-bezier(.22,1,.36,1)}
+.mod:hover .mod-fig img{filter:grayscale(.15) contrast(1);transform:scale(1.04)}
+.mod-fig::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(6,8,9,.14) 0 1px,transparent 1px 3px);pointer-events:none}
+.mod-idx{position:absolute;top:.8rem;left:.9rem;font-family:var(--f-m);font-size:.68rem;letter-spacing:.14em;color:var(--acc);
+  background:rgba(6,8,9,.82);border:1px solid var(--line2);padding:.3em .75em}
+.mod-status{position:absolute;top:.8rem;right:.9rem;font-family:var(--f-m);font-size:.62rem;letter-spacing:.14em;
+  text-transform:uppercase;padding:.32em .8em;border:1px solid}
+.mod-status.live{color:var(--acc);border-color:var(--acc)}
+.mod-status.pending{color:var(--amber);border-color:rgba(255,180,84,.55)}
+.mod-body{display:flex;justify-content:space-between;align-items:flex-end;gap:1.2rem;padding:1.15rem 1.3rem 1.25rem;border-top:1px solid var(--line)}
+.mod-body h3{font-weight:600;text-transform:uppercase;letter-spacing:.03em;font-size:clamp(1.05rem,1.8vw,1.5rem);transition:color .3s}
+.mod:hover .mod-body h3{color:var(--acc)}
+.mod-body .cat{color:var(--dim);margin-top:.3rem;font-family:var(--f-m);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase}
+.mod-arrow{flex:none;width:2.1rem;height:2.1rem;border:1px solid var(--line2);display:grid;place-items:center;color:var(--acc);
+  transition:background .3s,color .3s}
+.mod:hover .mod-arrow{background:var(--acc);color:#04110d}
+.mod-arrow svg{width:.85rem;height:.85rem}
+.arch-foot{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;margin-top:2.4rem;color:var(--dim2)}
+
+/* ============ Skills ============ */
+.skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
+.skill{border:1px solid var(--line);background:var(--panel);padding:1.5rem 1.5rem 1.7rem;position:relative}
+.skill::before{content:attr(data-i);position:absolute;top:1.1rem;right:1.3rem;font-family:var(--f-m);font-size:.66rem;color:var(--dim2);letter-spacing:.14em}
+.skill h3{font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:1.08rem;margin-bottom:.5rem}
+.skill .tools{font-family:var(--f-m);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:1.3rem}
+.gauge{display:flex;gap:4px}
+.gauge i{flex:1;height:12px;background:rgba(120,220,205,.1);transform:skewX(-14deg)}
+.gauge i.f{background:var(--acc)}
+.gauge i.half{background:linear-gradient(90deg,var(--acc) 50%,rgba(120,220,205,.1) 50%)}
+.skill-foot{display:flex;justify-content:space-between;margin-top:.8rem;color:var(--dim2);font-family:var(--f-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}
+.skills-note{margin-top:1.6rem;color:var(--dim2);font-family:var(--f-m);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase}
+
+/* ============ Uplink (contact) ============ */
+.uplink-head{font-weight:700;text-transform:uppercase;line-height:.95;letter-spacing:-.01em;
+  font-size:clamp(2.6rem,8.5vw,7.5rem);margin-bottom:3rem}
+.uplink-head span{color:var(--acc)}
+.uplink-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:3.5rem;align-items:start}
+.channel{display:flex;justify-content:space-between;align-items:center;gap:1.4rem;border-bottom:1px solid var(--line);padding:1.4rem 0;transition:border-color .3s}
+.channel:first-child{border-top:1px solid var(--line)}
+.channel:hover{border-color:var(--acc)}
+.channel .lab{color:var(--dim2);flex:0 0 110px}
+.channel .val{font-weight:600;font-size:clamp(1.05rem,2.2vw,1.6rem);letter-spacing:.01em;flex:1;transition:color .3s;display:flex;align-items:center;gap:.55em;word-break:break-all}
+.channel:hover .val{color:var(--acc)}
+.channel .val svg{width:.75em;height:.75em;color:var(--acc);flex:none;transition:transform .35s}
+.channel:hover .val svg{transform:translate(4px,-4px)}
+.uplink-note{margin-top:2rem;color:var(--dim);max-width:46ch;font-size:.98rem;line-height:1.65}
+.qr-mods{display:flex;gap:1.3rem;flex-wrap:wrap}
+.qr-mod{border:1px solid var(--line);background:var(--panel);padding:1rem;width:218px;text-align:left;
+  transition:border-color .3s,transform .5s cubic-bezier(.22,1,.36,1)}
+.qr-mod:hover{border-color:var(--acc);transform:translateY(-5px)}
+.qr-mod .fig{background:#fff;aspect-ratio:1;padding:.6rem}
+.qr-mod .fig img{width:100%;height:100%;object-fit:contain}
+.qr-cap{display:flex;justify-content:space-between;align-items:center;margin-top:.9rem}
+.qr-cap b{font-weight:600;text-transform:uppercase;letter-spacing:.06em;font-size:.9rem}
+.qr-cap span{color:var(--dim2)}
+.cv-block{margin-top:3.2rem;border:1px dashed var(--line2);padding:1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1.4rem;flex-wrap:wrap}
+.cv-block .t b{display:block;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.cv-block .t span{color:var(--dim);font-size:.9rem}
+
+/* ============ Footer ============ */
+footer{border-top:1px solid var(--line);margin-top:6rem}
+.foot-in{max-width:1280px;margin-inline:auto;padding:2rem 2rem 2.4rem;display:flex;justify-content:space-between;align-items:center;gap:1.4rem;flex-wrap:wrap;color:var(--dim)}
+.foot-in .socials{display:flex;gap:1.8rem;flex-wrap:wrap}
+.foot-in a:hover{color:var(--acc)}
+.foot-giant{font-weight:700;text-transform:uppercase;letter-spacing:.02em;line-height:.85;text-align:center;
+  font-size:clamp(3rem,13vw,11rem);color:transparent;-webkit-text-stroke:1px rgba(120,220,205,.14);
+  padding:1.5rem 0 0;user-select:none;white-space:nowrap}
+#toTop{display:inline-flex;align-items:center;gap:.55em;color:var(--text);transition:color .3s}
+#toTop:hover{color:var(--acc)}
+#toTop svg{width:.8rem;height:.8rem}
+
+/* ============ Modal ============ */
+#modal{position:fixed;inset:0;z-index:2500;display:grid;place-items:center;padding:1.4rem;
+  background:rgba(4,6,7,.86);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  visibility:hidden;opacity:0;transition:opacity .35s,visibility 0s linear .35s}
+#modal.open{visibility:visible;opacity:1;transition:opacity .35s}
+.m-panel{width:min(880px,94vw);max-height:90svh;overflow-y:auto;background:var(--bg2);border:1px solid var(--line2);
+  transform:translateY(26px);transition:transform .5s cubic-bezier(.22,1,.36,1);position:relative}
+#modal.open .m-panel{transform:none}
+.m-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--acc)}
+.m-top{position:sticky;top:0;z-index:3;display:flex;justify-content:space-between;align-items:center;
+  padding:.95rem 1.5rem;background:rgba(10,14,16,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.m-top .mono{color:var(--acc)}
+.m-close{letter-spacing:.12em;transition:color .3s}
+.m-close:hover{color:var(--danger)}
+.m-body{padding:1.8rem 1.5rem 2.2rem}
+#mTitle{font-weight:700;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(1.7rem,4.5vw,3rem);margin-bottom:1.3rem}
+#mFig{position:relative;border:1px solid var(--line);aspect-ratio:16/9;overflow:hidden;margin-bottom:1.5rem;background:var(--panel)}
+#mFig img{width:100%;height:100%;object-fit:cover}
+#mFig::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(6,8,9,.12) 0 1px,transparent 1px 3px);pointer-events:none}
+.m-meta{display:flex;flex-wrap:wrap;gap:0;border-block:1px solid var(--line);margin-bottom:1.6rem}
+.m-meta > div{flex:1;min-width:140px;padding:.8rem 1.2rem;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:.25rem}
+.m-meta > div:first-child{border-left:0;padding-left:0}
+.m-meta .k{color:var(--dim2)}
+.m-meta .v{font-family:var(--f-m);font-size:.76rem}
+#mDesc{color:var(--dim);line-height:1.7;max-width:62ch;margin-bottom:1.6rem}
+.m-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem}
+.m-tags span{font-family:var(--f-m);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--line);padding:.4em .9em;color:var(--dim)}
+#mNext{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;border:1px solid var(--line);padding:1.1rem 1.4rem;transition:border-color .3s}
+#mNext:hover{border-color:var(--acc)}
+#mNext .nt{font-weight:600;text-transform:uppercase;letter-spacing:.03em;font-size:clamp(1rem,2.4vw,1.4rem)}
+#mNext:hover .nt{color:var(--acc)}
+#mNext svg{width:1.2rem;height:1.2rem;color:var(--acc)}
+
+/* ============ QR lightbox ============ */
+#qrModal{position:fixed;inset:0;z-index:2600;display:grid;place-items:center;padding:1.4rem;
+  background:rgba(4,6,7,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  visibility:hidden;opacity:0;transition:opacity .35s,visibility 0s linear .35s}
+#qrModal.open{visibility:visible;opacity:1;transition:opacity .35s}
+.qr-stage{position:relative;background:var(--bg2);border:1px solid var(--line2);padding:1.8rem;width:min(440px,92vw);text-align:center}
+.qr-stage::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--acc)}
+.qr-stage h3{font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.qr-stage img{width:min(340px,60vw);aspect-ratio:1;object-fit:contain;background:#fff;padding:.7rem;margin:1.2rem auto;image-rendering:pixelated}
+.qr-stage p{color:var(--dim)}
+#qrClose{position:absolute;top:.9rem;right:1.1rem}
+
+/* ============ Responsive ============ */
+@media (max-width:960px){
+  .ident-grid,.uplink-grid{grid-template-columns:1fr}
+  .arch-grid{grid-template-columns:1fr}
+  .mod,.mod:first-child{grid-column:1/-1}
+  .skill-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  #navToggle{display:block}
+  #clock{display:none}
+  section{padding:6rem 1.3rem}
+  nav#top{padding:.85rem 1.3rem}
+  .readout{flex-wrap:wrap}
+  .readout > div{flex:1 1 46%;border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .record{grid-template-columns:1fr auto;row-gap:.3rem}
+  .record .yr{grid-column:1/-1}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .ticker-track,.sweep,.scrolldown i::after,.logo .sig,.status-dot{animation:none!important}
+  .reveal{opacity:1;transform:none;transition:none}
+  .glitch::before,.glitch::after{display:none}
+  *{transition-duration:.01ms!important}
+}
+</style>
 </head>
 <body>
 
-  <!-- ─── NAVBAR ─── -->
-  <nav>
-    <a href="#hero" class="nav-logo">Basudev <span>.</span></a>
-    <ul class="nav-links">
-      <li><a href="#hero" class="active">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="nav-cta">Hire Me</button>
-  </nav>
+<div class="grid-bg" aria-hidden="true"></div>
+<div class="scanlines" aria-hidden="true"></div>
+<div class="sweep" aria-hidden="true"></div>
+<div id="scrollbar" aria-hidden="true"><i></i></div>
+<i class="hud-corner tl" aria-hidden="true"></i><i class="hud-corner tr" aria-hidden="true"></i>
+<i class="hud-corner bl" aria-hidden="true"></i><i class="hud-corner br" aria-hidden="true"></i>
 
-  <!-- ─── HERO ─── -->
+<!-- ======= Boot sequence ======= -->
+<div id="boot" aria-hidden="true">
+  <div class="boot-in">
+    <div class="boot-head"><span>RP-OS // PORTFOLIO TERMINAL</span><span>v2050.1</span></div>
+    <div id="bootLog"></div>
+    <div class="boot-bar"><i id="bootFill"></i></div>
+    <div class="boot-foot"><span id="bootState">INITIALIZING</span><span><span id="bootPct">000</span>%</span></div>
+  </div>
+</div>
+
+<!-- ======= Nav ======= -->
+<nav id="top">
+  <a class="logo" href="#hero" data-cursor="link"><span class="sig"></span>RAKTA<b>//</b>PYAS</a>
+  <div class="nav-links mono">
+    <a href="#ident">Ident</a>
+    <a href="#archive">Archive</a>
+    <a href="#skills">Skills</a>
+    <a href="#uplink">Uplink</a>
+  </div>
+  <div class="nav-right">
+    <span class="mono" id="clock">NPT <b>--:--:--</b></span>
+    <a class="cv-mini mono" href="#uplink" data-cv>CV ↓</a>
+    <button id="navToggle" class="mono" aria-expanded="false">Menu</button>
+  </div>
+</nav>
+<div id="mobileNav" hidden>
+  <div class="nav-links mono" style="display:flex;flex-direction:column;gap:1.2rem;padding:1.4rem 1.3rem;border-bottom:1px solid var(--line);background:rgba(6,8,9,.96)">
+    <a href="#ident">Ident</a><a href="#archive">Archive</a><a href="#skills">Skills</a><a href="#uplink">Uplink</a>
+  </div>
+</div>
+
+<main>
+  <!-- ======= Hero ======= -->
   <section id="hero">
-    <div class="hero-content">
-      <div class="hero-tag">Hello!</div>
-      <h1 class="hero-name">I'm <span>Basudev Dhakal</span></h1>
-      <p class="hero-role">Full-Stack Web Developer</p>
-      <p class="hero-desc">
-        Passionate about building powerful digital experiences from the ground up. I craft clean, scalable, and high-performance web applications that drive real results — from backend architecture to pixel-perfect front-ends.
-      </p>
-      <a href="#contact" class="btn-primary">Let's Talk</a>
-      <div class="hero-socials">
-        <a href="https://wa.me/9779849330437" target="_blank" class="social-icon" aria-label="WhatsApp">
-          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    <div class="hero-meta mono">
+      <span class="op"><img src="profile%201.jpg" alt="Basudev Dhakal">OPERATOR // BASUDEV DHAKAL</span>
+      <span>SECTOR: KATHMANDU, NP — 27.71°N / 85.32°E</span>
+      <span>BUILD ©2050</span>
+    </div>
+
+    <div class="hero-title-wrap">
+      <p class="hero-kicker mono">Portfolio OS — online</p>
+      <h1 class="glitch" id="glitchEl" data-text="Rakta Pyas">Rakta Pyas</h1>
+      <p class="hero-sub">web developer — <b>laravel systems</b> / frontend engineering</p>
+      <div class="hero-ctas">
+        <a class="btn solid" href="#uplink" data-cv>Download CV
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg>
         </a>
-
+        <a class="btn" href="#archive">Open Archive
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+        </a>
       </div>
     </div>
 
-    <div class="hero-photo-wrap">
-      <div class="hero-photo-ring">
-        <img src="assets/profile.jpg" alt="Basudev Dhakal" />
-      </div>
+    <div class="readout mono">
+      <div><span class="k">Status</span><span class="v amber"><i class="status-dot"></i>Open to work</span></div>
+      <div><span class="k">Stack</span><span class="v">Laravel / PHP / JS</span></div>
+      <div><span class="k">Local time</span><span class="v acc" id="msClock">--:--:--.---</span></div>
+      <div><span class="k">Uplink</span><span class="v">Mail / WhatsApp / Discord</span></div>
     </div>
 
-    <div class="scroll-indicator">
-      <div class="scroll-line"></div>
-      Scroll
-    </div>
+    <div class="scrolldown mono" aria-hidden="true">SCROLL<i></i></div>
   </section>
 
-  <!-- ─── ABOUT ─── -->
-  <section id="about">
-    <h2 class="section-title fade-up">About <span>Me</span></h2>
-    <div class="about-inner">
-      <div class="about-photo-wrap fade-up">
-        <div class="about-photo-ring">
-          <img src="assets/profile.jpg" alt="Basudev Dhakal" />
+  <!-- ======= Ticker ======= -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="tickerTrack"><div class="ticker-set" id="tickerSet"></div></div>
+  </div>
+
+  <!-- ======= 01 / Ident ======= -->
+  <section id="ident">
+    <div class="sec-head reveal">
+      <h2><span>01 //</span>Ident</h2>
+      <span class="mono">Operator dossier — verified</span>
+    </div>
+
+    <div class="ident-grid">
+      <figure class="id-card reveal">
+        <span class="cb"></span>
+        <div class="id-photo">
+          <span class="id-tagline mono">ID_01 — LIVE SCAN</span>
+          <img src="profile%201.jpg" alt="Portrait of Basudev Dhakal" loading="lazy">
         </div>
-        <div class="about-role">Full-Stack Web Developer</div>
+        <figcaption class="id-body mono">
+          <div class="id-row"><span class="k">Name</span><span class="v">Basudev Dhakal</span></div>
+          <div class="id-row"><span class="k">Alias</span><span class="v acc">Rakta Pyas</span></div>
+          <div class="id-row"><span class="k">Base</span><span class="v">Kathmandu, Nepal</span></div>
+          <div class="id-row"><span class="k">Role</span><span class="v">Web Developer</span></div>
+          <div class="id-row"><span class="k">Languages</span><span class="v">Ne / En / Hi</span></div>
+          <div class="id-row"><span class="k">Status</span><span class="v amber">Open to work</span></div>
+        </figcaption>
+      </figure>
+
+      <div class="bio reveal">
+        <p class="lead">I build for the web the way systems get built — <em>structured, responsive, honest.</em> Laravel and PHP on the server, hand-written HTML, CSS and JavaScript on the front.</p>
+        <p>My core stack is <strong>Laravel &amp; PHP</strong> — routing, controllers, Blade templating, Eloquent ORM and migrations — paired with <strong>modern frontend</strong> and <strong>Git &amp; GitHub</strong> underneath. I care about clean interfaces, mobile-first layouts, and code other people can actually read.</p>
+        <p>Beyond the code: strong communication, problem-solving and teamwork — the parts that make projects actually ship. Fluent in <strong>English</strong>, native in <strong>Nepali</strong>, conversational in <strong>Hindi</strong>.</p>
+        <p>Current objective: a team shipping real web products — <strong>web development or IT support</strong> — where I contribute from day one and keep levelling up.</p>
       </div>
-      <div class="about-text fade-up">
-        <p>
-          I'm <strong>Basudev Dhakal</strong>, a Full-Stack Web Developer with a passion for building seamless digital experiences. I specialize in turning complex problems into elegant, functional solutions.
-        </p>
-        <p>
-          With expertise across both front-end and back-end technologies, I bring a holistic approach to every project — from initial architecture planning through to deployment and optimization. I believe great software is both technically sound and visually compelling.
-        </p>
-        <p>
-          When I'm not coding, I'm exploring new technologies, contributing to open-source projects, and constantly leveling up my craft. I'm ready to bring your next idea to life with clean code and rock-solid execution.
-        </p>
-        <a href="#contact" class="btn-hire">Hire Me</a>
+    </div>
+
+    <div class="records reveal">
+      <div class="records-head mono"><span>Education records</span><span>2010 → 2014</span></div>
+      <div class="record">
+        <span class="yr mono">2012—2014</span>
+        <div><h3>Triton International College</h3><p class="deg">Higher Secondary Education (+2)</p></div>
+        <span class="score">61.20%</span>
+      </div>
+      <div class="record">
+        <span class="yr mono">2010—2012</span>
+        <div><h3>Greatwall International School</h3><p class="deg">School Leaving Certificate (SLC)</p></div>
+        <span class="score">75%</span>
       </div>
     </div>
   </section>
 
-  <!-- ─── SKILLS ─── -->
+  <!-- ======= 02 / Archive ======= -->
+  <section id="archive">
+    <div class="sec-head reveal">
+      <h2><span>02 //</span>Archive</h2>
+      <span class="mono">05 modules — select to decrypt</span>
+    </div>
+
+    <!-- rows below mirror the PROJECTS array in the script; placeholders marked in code -->
+    <div class="arch-grid" id="archGrid">
+      <button class="mod reveal" data-index="0" aria-haspopup="dialog">
+        <span class="mod-fig"><span class="mod-idx">MOD_01</span><span class="mod-status live">Live</span><img src="profile%201.jpg" alt="Personal Portfolio module"></span>
+        <span class="mod-body"><span><h3>Personal Portfolio</h3><span class="cat">Web · Responsive · 2025</span></span>
+        <span class="mod-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span>
+      </button>
+      <button class="mod reveal" data-index="1" aria-haspopup="dialog">
+        <span class="mod-fig"><span class="mod-idx">MOD_02</span><span class="mod-status pending">Pending</span><img src="https://picsum.photos/seed/rakta-task/900/520.jpg" alt="Taskflow module" loading="lazy"></span>
+        <span class="mod-body"><span><h3>Taskflow</h3><span class="cat">Web App · Laravel · 2025</span></span>
+        <span class="mod-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span>
+      </button>
+      <button class="mod reveal" data-index="2" aria-haspopup="dialog">
+        <span class="mod-fig"><span class="mod-idx">MOD_03</span><span class="mod-status pending">Pending</span><img src="https://picsum.photos/seed/rakta-kori/900/520.jpg" alt="Kori Coffee module" loading="lazy"></span>
+        <span class="mod-body"><span><h3>Kori Coffee</h3><span class="cat">Storefront · Concept · 2024</span></span>
+        <span class="mod-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span>
+      </button>
+      <button class="mod reveal" data-index="3" aria-haspopup="dialog">
+        <span class="mod-fig"><span class="mod-idx">MOD_04</span><span class="mod-status pending">Pending</span><img src="https://picsum.photos/seed/rakta-inkwell/900/520.jpg" alt="Inkwell module" loading="lazy"></span>
+        <span class="mod-body"><span><h3>Inkwell</h3><span class="cat">Blog Engine · Laravel · 2024</span></span>
+        <span class="mod-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span>
+      </button>
+      <button class="mod reveal" data-index="4" aria-haspopup="dialog">
+        <span class="mod-fig"><span class="mod-idx">MOD_05</span><span class="mod-status pending">Pending</span><img src="https://picsum.photos/seed/rakta-skyline/900/520.jpg" alt="Skyline module" loading="lazy"></span>
+        <span class="mod-body"><span><h3>Skyline</h3><span class="cat">API Client · JavaScript · 2024</span></span>
+        <span class="mod-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span></span>
+      </button>
+    </div>
+
+    <div class="arch-foot mono reveal">
+      <span>Source &amp; experiments</span>
+      <a href="https://github.com/raktapyas?tab=repositories" target="_blank" rel="noopener">GITHUB.COM/RAKTAPYAS ↗</a>
+    </div>
+  </section>
+
+  <!-- ======= 03 / Skills ======= -->
   <section id="skills">
-    <h2 class="section-title fade-up">My <span>Skills</span></h2>
-    <div class="skills-grid">
-
-      <div class="skill-item fade-up">
-        <div class="skill-header">
-          <span class="skill-name">HTML</span>
-          <span class="skill-pct">95%</span>
-        </div>
-        <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
-      </div>
-
-      <div class="skill-item fade-up">
-        <div class="skill-header">
-          <span class="skill-name">CSS</span>
-          <span class="skill-pct">88%</span>
-        </div>
-        <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
-      </div>
-
-      <div class="skill-item fade-up">
-        <div class="skill-header">
-          <span class="skill-name">JavaScript</span>
-          <span class="skill-pct">82%</span>
-        </div>
-        <div class="skill-bar"><div class="skill-fill" data-width="82"></div></div>
-      </div>
-
-      <div class="skill-item fade-up">
-        <div class="skill-header">
-          <span class="skill-name">Figma</span>
-          <span class="skill-pct">75%</span>
-        </div>
-        <div class="skill-bar"><div class="skill-fill" data-width="75"></div></div>
-      </div>
-
-      <div class="skill-item fade-up">
-        <div class="skill-header">
-          <span class="skill-name">React</span>
-          <span class="skill-pct">78%</span>
-        </div>
-        <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
-      </div>
-
-      <div class="skill-item fade-up">
-        <div class="skill-header">
-          <span class="skill-name">Node.js</span>
-          <span class="skill-pct">70%</span>
-        </div>
-        <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
-      </div>
-
+    <div class="sec-head reveal">
+      <h2><span>03 //</span>Skills</h2>
+      <span class="mono">System proficiency — self assessed</span>
     </div>
+
+    <div class="skill-grid">
+      <div class="skill reveal" data-i="SYS_01">
+        <h3>Laravel &amp; PHP</h3>
+        <p class="tools">Routes / Controllers / Blade / Eloquent / MySQL</p>
+        <div class="gauge" data-lv="7"></div>
+        <div class="skill-foot"><span>Core stack</span><span>07/10</span></div>
+      </div>
+      <div class="skill reveal" data-i="SYS_02">
+        <h3>Frontend Engineering</h3>
+        <p class="tools">HTML5 / CSS3 / JavaScript</p>
+        <div class="gauge" data-lv="8"></div>
+        <div class="skill-foot"><span>Hand-written, no templates</span><span>08/10</span></div>
+      </div>
+      <div class="skill reveal" data-i="SYS_03">
+        <h3>Responsive Design</h3>
+        <p class="tools">Flexbox / Grid / Mobile-first / Breakpoints</p>
+        <div class="gauge" data-lv="8"></div>
+        <div class="skill-foot"><span>Tested on real devices</span><span>08/10</span></div>
+      </div>
+      <div class="skill reveal" data-i="SYS_04">
+        <h3>Git &amp; Deployment</h3>
+        <p class="tools">Git / GitHub / GitHub Pages / PM Tools</p>
+        <div class="gauge" data-lv="8"></div>
+        <div class="skill-foot"><span>Auditable history</span><span>08/10</span></div>
+      </div>
+      <div class="skill reveal" data-i="SYS_05">
+        <h3>IT Support &amp; Office</h3>
+        <p class="tools">Word / Excel / PowerPoint / Troubleshooting</p>
+        <div class="gauge" data-lv="8"></div>
+        <div class="skill-foot"><span>Reliable operator</span><span>08/10</span></div>
+      </div>
+      <div class="skill reveal" data-i="SYS_06">
+        <h3>Human Interface</h3>
+        <p class="tools">Communication / Teamwork / Problem solving</p>
+        <div class="gauge" data-lv="9"></div>
+        <div class="skill-foot"><span>The skills that ship projects</span><span>09/10</span></div>
+      </div>
+    </div>
+    <p class="skills-note reveal">// Calibration ongoing — values update as systems are battle-tested</p>
   </section>
 
-  <!-- ─── SERVICES ─── -->
-  <section id="services">
-    <h2 class="section-title fade-up">My <span>Services</span></h2>
-    <div class="services-grid">
+  <!-- ======= 04 / Uplink ======= -->
+  <section id="uplink">
+    <div class="sec-head reveal">
+      <h2><span>04 //</span>Uplink</h2>
+      <span class="mono">Kathmandu · UTC+5:45</span>
+    </div>
 
-      <div class="service-card fade-up">
-        <span class="service-icon">⚡</span>
-        <h3 class="service-title">Front-End Development</h3>
-        <p class="service-desc">Building lightning-fast, responsive interfaces using modern frameworks. Pixel-perfect implementations from Figma designs to live, production-ready code.</p>
+    <h2 class="uplink-head reveal">Open<br>transmis<span>sion</span></h2>
+
+    <div class="uplink-grid">
+      <div class="reveal">
+        <a class="channel" href="mailto:raktapyas@gmail.com">
+          <span class="lab mono">Mail</span>
+          <span class="val">raktapyas@gmail.com
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </a>
+        <a class="channel" href="tel:+9779849330437">
+          <span class="lab mono">Voice</span>
+          <span class="val">+977-9849330437
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </a>
+        <a class="channel" href="https://wa.me/9779849330437" target="_blank" rel="noopener">
+          <span class="lab mono">WhatsApp</span>
+          <span class="val">Direct channel — open chat
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </a>
+        <a class="channel" href="https://github.com/raktapyas" target="_blank" rel="noopener">
+          <span class="lab mono">GitHub</span>
+          <span class="val">github.com/raktapyas
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+        </a>
+        <p class="uplink-note">Response latency: usually under 24 hours. Freelance, full-time and collaboration signals all accepted on this frequency.</p>
       </div>
 
-      <div class="service-card fade-up">
-        <span class="service-icon">🔧</span>
-        <h3 class="service-title">Back-End Development</h3>
-        <p class="service-desc">Robust server architectures, RESTful APIs, and database design. Scalable systems built to handle real-world load with security-first principles.</p>
+      <div class="reveal">
+        <p class="mono" style="color:var(--dim2);margin-bottom:1rem">// Scan-to-connect modules</p>
+        <div class="qr-mods">
+          <button class="qr-mod" data-qr="discord" aria-haspopup="dialog">
+            <span class="fig"><img src="raktapyas-portfilo.png" alt="Discord QR code" loading="lazy"></span>
+            <span class="qr-cap"><b>Discord</b><span class="mono">Scan</span></span>
+          </button>
+          <button class="qr-mod" data-qr="whatsapp" aria-haspopup="dialog">
+            <span class="fig"><img src="whatsapp.png" alt="WhatsApp QR code" loading="lazy"></span>
+            <span class="qr-cap"><b>WhatsApp</b><span class="mono">Scan</span></span>
+          </button>
+        </div>
+        <div class="cv-block">
+          <div class="t"><b>Operator dossier — CV</b><span>Full résumé, generated on demand</span></div>
+          <a class="btn solid" href="#uplink" data-cv>Download
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg>
+          </a>
+        </div>
       </div>
-
-      <div class="service-card fade-up">
-        <span class="service-icon">🎨</span>
-        <h3 class="service-title">UI / UX Design</h3>
-        <p class="service-desc">Translating business requirements into intuitive user journeys. From wireframes and prototypes to polished, accessible final designs in Figma.</p>
-      </div>
-
     </div>
   </section>
+</main>
 
-  <!-- ─── PORTFOLIO ─── -->
-  <section id="portfolio">
-    <h2 class="section-title fade-up">My <span>Portfolio</span></h2>
-    <div class="portfolio-grid">
-
-      <div class="portfolio-card fade-up">
-        <div class="portfolio-card-inner">
-          <div class="portfolio-num">01</div>
-          <div class="portfolio-label">E-Commerce App</div>
-        </div>
-        <div class="portfolio-card-overlay">
-          <h3>E-Commerce App</h3>
-          <p>React · Node.js · MongoDB</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card fade-up">
-        <div class="portfolio-card-inner">
-          <div class="portfolio-num">02</div>
-          <div class="portfolio-label">Dashboard UI</div>
-        </div>
-        <div class="portfolio-card-overlay">
-          <h3>Dashboard UI</h3>
-          <p>React · Tailwind · REST API</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card fade-up">
-        <div class="portfolio-card-inner">
-          <div class="portfolio-num">03</div>
-          <div class="portfolio-label">Portfolio Site</div>
-        </div>
-        <div class="portfolio-card-overlay">
-          <h3>Portfolio Site</h3>
-          <p>HTML · CSS · JavaScript</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card fade-up">
-        <div class="portfolio-card-inner">
-          <div class="portfolio-num">04</div>
-          <div class="portfolio-label">Blog Platform</div>
-        </div>
-        <div class="portfolio-card-overlay">
-          <h3>Blog Platform</h3>
-          <p>Next.js · Prisma · PostgreSQL</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card fade-up">
-        <div class="portfolio-card-inner">
-          <div class="portfolio-num">05</div>
-          <div class="portfolio-label">Mobile App UI</div>
-        </div>
-        <div class="portfolio-card-overlay">
-          <h3>Mobile App UI</h3>
-          <p>React Native · Figma</p>
-        </div>
-      </div>
-
-      <div class="portfolio-card fade-up">
-        <div class="portfolio-card-inner">
-          <div class="portfolio-num">06</div>
-          <div class="portfolio-label">SaaS Landing Page</div>
-        </div>
-        <div class="portfolio-card-overlay">
-          <h3>SaaS Landing Page</h3>
-          <p>HTML · CSS · GSAP</p>
-        </div>
-      </div>
-
+<footer>
+  <div class="foot-giant" aria-hidden="true">Rakta Pyas — 2050</div>
+  <div class="foot-in mono">
+    <span>©2025 Basudev Dhakal — Designed &amp; coded from scratch</span>
+    <div class="socials">
+      <a href="https://github.com/raktapyas" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://wa.me/9779849330437" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:raktapyas@gmail.com">Mail</a>
+      <a href="tel:+9779849330437">Voice</a>
     </div>
-  </section>
+    <a id="toTop" href="#hero">Return to surface
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V6m0 0l-6 6m6-6l6 6"/></svg></a>
+  </div>
+</footer>
 
-  <!-- ─── CONTACT ─── -->
-  <section id="contact">
-    <h2 class="section-title fade-up">Get In <span>Touch</span></h2>
-    <div class="contact-inner fade-up">
-      <p>Have a project in mind? Let's build something extraordinary together. Drop a message and I'll get back to you within 24 hours.</p>
-      <form class="contact-form">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Your Name</label>
-            <input type="text" placeholder="Basudev Dhakal" />
-          </div>
-          <div class="form-group">
-            <label>Your Email</label>
-            <input type="email" placeholder="basudev-dhakal@yahoo.com" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Subject</label>
-          <input type="text" placeholder="Project Inquiry" />
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea rows="6" placeholder="Tell me about your project..."></textarea>
-        </div>
-        <button type="submit" class="btn-primary">Send Message</button>
-      </form>
+<!-- ======= Archive modal ======= -->
+<div id="modal" role="dialog" aria-modal="true" aria-label="Archive module">
+  <div class="m-panel">
+    <div class="m-top">
+      <span class="mono" id="mIdx">MOD_01 // 01—05</span>
+      <button class="m-close mono" id="mClose">Close [ESC]</button>
     </div>
-  </section>
-
-  <!-- ─── FOOTER ─── -->
-  <footer>
-    <div class="footer-logo">Basudev <span>.</span></div>
-    <p>© 2026 Crafted by Basudev Dhakal. <span>♥</span> </p>
-    <div class="hero-socials">
-      <a href="https://wa.me/9779849330437" target="_blank" class="social-icon" aria-label="WhatsApp">
-        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-      </a>
-
+    <div class="m-body">
+      <h2 id="mTitle">—</h2>
+      <figure id="mFig"><img id="mImg" alt=""></figure>
+      <div class="m-meta mono">
+        <div><span class="k">Year</span><span class="v" id="mYear"></span></div>
+        <div><span class="k">Role</span><span class="v" id="mRole"></span></div>
+        <div><span class="k">Class</span><span class="v" id="mCat"></span></div>
+        <div><span class="k">Status</span><span class="v" id="mStat"></span></div>
+      </div>
+      <p id="mDesc"></p>
+      <div class="m-tags" id="mTags"></div>
+      <a class="btn" id="mLive" href="#" target="_blank" rel="noopener" style="display:none;margin-right:.8rem">Visit live module
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      <button class="btn" id="mNext">Next module
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg></button>
     </div>
-  </footer>
+  </div>
+</div>
 
-  <script src="js/main.js"></script>
+<!-- ======= QR lightbox ======= -->
+<div id="qrModal" role="dialog" aria-modal="true" aria-label="Scan QR code">
+  <div class="qr-stage">
+    <button class="m-close mono" id="qrClose">Close</button>
+    <h3 id="qTitle">—</h3>
+    <img id="qImg" src="" alt="QR code">
+    <p class="mono" id="qHint">Point your camera at the code</p>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+const $  = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ================= Content ================= */
+/* MOD_02–05 are placeholders — build the real thing, then edit its object here */
+const PROJECTS = [
+  { title:'Personal Portfolio', cat:'Web — Responsive', year:'2025', role:'Design & Development', status:'LIVE',
+    img:'profile%201.jpg',
+    live:'https://raktapyas.github.io/portfilo',
+    desc:'The terminal you\'re reading this on. A fully responsive personal portfolio designed and coded from scratch — no templates. Custom interfaces, animated states and a mobile-first layout, deployed on GitHub Pages and version-controlled with Git.',
+    tags:['HTML','CSS','JavaScript','Responsive','GitHub Pages'] },
+  { title:'Taskflow', cat:'Web App — Laravel', year:'2025', role:'Development', status:'PENDING',
+    img:'https://picsum.photos/seed/rakta-task/1600/900.jpg', live:null,
+    desc:'A task manager built with Laravel — authentication, full CRUD and Eloquent relationships, with a Blade frontend that stays out of the way. Built to run the framework\'s core patterns end to end, from migration to deployment.',
+    tags:['Laravel','PHP','Blade','MySQL','CRUD'] },
+  { title:'Kori Coffee', cat:'Storefront — Concept', year:'2024', role:'Design & Development', status:'PENDING',
+    img:'https://picsum.photos/seed/rakta-kori/1600/900.jpg', live:null,
+    desc:'A storefront concept for a single-origin roaster — product grid, cart flow and checkout pattern, composed with Blade components and a mobile-first layout. An exercise in making commerce feel calm.',
+    tags:['Blade Components','CSS Grid','Responsive','UI Design'] },
+  { title:'Inkwell', cat:'Blog Engine — Laravel', year:'2024', role:'Development', status:'PENDING',
+    img:'https://picsum.photos/seed/rakta-inkwell/1600/900.jpg', live:null,
+    desc:'A markdown-driven blog engine — migrations and Eloquent models for posts and tags, an admin-side editor and route caching. The project where Laravel\'s conventions click into place.',
+    tags:['Laravel','Eloquent','Markdown','Migrations'] },
+  { title:'Skyline', cat:'API Client — JavaScript', year:'2024', role:'Design & Code', status:'PENDING',
+    img:'https://picsum.photos/seed/rakta-skyline/1600/900.jpg', live:null,
+    desc:'A weather dashboard consuming a public REST API — fetch, async rendering, geolocation and a UI that shifts with the forecast. Vanilla JavaScript throughout: no libraries, no frameworks.',
+    tags:['JavaScript','REST API','Fetch','Geolocation'] },
+];
+const QRS = {
+  discord:  { src:'raktapyas-portfilo.png', title:'Discord Uplink',  hint:'Scan with the Discord app to add me' },
+  whatsapp: { src:'whatsapp.png',           title:'WhatsApp Uplink', hint:'Scan with your phone camera to chat' },
+};
+const pad = n => String(n).padStart(2,'0');
+const pad3 = n => String(n).padStart(3,'0');
+
+/* ================= CV download ================= */
+/* To serve a real PDF instead: upload cv.pdf to the repo and set CV_PDF = 'cv.pdf' */
+const CV_PDF = null;
+function downloadCV(e){
+  e.preventDefault();
+  if (CV_PDF){ window.open(CV_PDF, '_blank'); return; }
+  const cv = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Basudev Dhakal — CV</title>
+<style>body{font-family:Georgia,serif;max-width:760px;margin:40px auto;padding:0 24px;color:#111;line-height:1.55}
+h1{margin:0;font-size:1.9em}h2{border-bottom:2px solid #111;padding-bottom:4px;margin-top:1.8em;font-size:1.05em;letter-spacing:.08em;text-transform:uppercase}
+.mut{color:#555}.row{display:flex;justify-content:space-between;gap:16px}.row b{display:block}
+ul{margin:.4em 0 .4em 1.2em}li{margin:.25em 0}@media print{body{margin:0}}</style></head><body>
+<h1>Basudev Dhakal</h1><p class="mut">Kathmandu, Nepal<br>
++977-9849330437 · raktapyas@gmail.com · raktapyas.github.io/portfilo</p>
+<h2>Professional Summary</h2>
+<p>Motivated and detail-oriented Web Developer with knowledge of HTML, CSS, JavaScript, responsive web design, Git &amp; GitHub, and Laravel (PHP) — building modern web experiences and continuously learning new technologies.</p>
+<h2>Technical Skills</h2>
+<ul><li>Laravel / PHP — routing, controllers, Blade, Eloquent, migrations</li>
+<li>HTML, CSS, JavaScript, Responsive Web Design</li>
+<li>Git &amp; GitHub · Microsoft Office · Project Management Tools</li></ul>
+<h2>Projects</h2>
+<div class="row"><span><b>Personal Portfolio Website</b><span class="mut">raktapyas.github.io/portfilo</span></span><span>2025</span></div>
+<ul><li>Designed and developed a responsive personal portfolio from scratch — no templates.</li>
+<li>Clean interface, mobile-friendly layout, deployed on GitHub Pages.</li></ul>
+<h2>Education</h2>
+<div class="row"><span><b>Triton International College</b><span class="mut">Higher Secondary (+2)</span></span><span>2012–2014 · 61.20%</span></div>
+<div class="row"><span><b>Greatwall International School</b><span class="mut">SLC</span></span><span>2010–2012 · 75%</span></div>
+<h2>Soft Skills</h2>
+<p>Problem Solving · Communication · Teamwork · Adaptability · Fast Learner · Time Management</p>
+<h2>Languages</h2>
+<p>Nepali (Native) · English (Fluent) · Hindi (Good)</p>
+<h2>Career Objective</h2>
+<p>Seeking an opportunity in Web Development or IT Support where I can apply my technical skills, contribute to organizational success, and grow professionally.</p>
+</body></html>`;
+  const blob = new Blob([cv], {type:'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Basudev-Dhakal-CV.html';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+ $$('[data-cv]').forEach(b => b.addEventListener('click', downloadCV));
+
+/* ================= Boot sequence ================= */
+(function boot(){
+  const el = $('#boot');
+  if (REDUCED){ el.remove(); return; }
+  document.body.classList.add('lock');
+  const lines = [
+    'RP-OS v2050.1 — boot sequence initiated',
+    'loading operator profile: BASUDEV DHAKAL',
+    'alias resolved: RAKTA PYAS — clearance: PUBLIC',
+    'mounting archive: 05 modules … mounted',
+    'uplink channels: MAIL / WHATSAPP / DISCORD … online',
+    'location sync: KATHMANDU // NPT +05:45 … locked',
+    'all systems nominal',
+  ];
+  const log = $('#bootLog'), fill = $('#bootFill'), pct = $('#bootPct'), state = $('#bootState');
+  const o = { v:0 };
+  const t0 = performance.now(), DUR = 1900;
+  lines.forEach((txt,i) => {
+    const d = document.createElement('div');
+    d.textContent = txt;
+    if (i > 0) d.className = 'ok';
+    d.style.animationDelay = (i*0.17 + 0.1) + 's';
+    log.appendChild(d);
+  });
+  (function step(now){
+    const p = Math.min(1, (now - t0)/DUR);
+    o.v = Math.round(p*100);
+    fill.style.transform = 'scaleX(' + p + ')';
+    pct.textContent = pad3(o.v);
+    if (p < 1){ requestAnimationFrame(step); }
+    else {
+      state.textContent = 'ACCESS GRANTED';
+      state.style.color = 'var(--acc)';
+      setTimeout(() => {
+        el.classList.add('done');
+        document.body.classList.remove('lock');
+        setTimeout(() => el.remove(), 900);
+      }, 350);
+    }
+  })(t0);
+})();
+
+/* ================= Clocks (NPT) ================= */
+(function clocks(){
+  let fmt;
+  try { fmt = new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kathmandu',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}); }
+  catch(e){ fmt = new Intl.DateTimeFormat('en-GB',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}); }
+  const navClock = $('#clock'), msClock = $('#msClock');
+  setInterval(() => {
+    const now = new Date();
+    const t = fmt.format(now);
+    if (navClock) navClock.innerHTML = 'NPT <b>' + t + '</b>';
+    if (msClock)  msClock.textContent = t + '.' + pad3(now.getMilliseconds());
+  }, 47);
+})();
+
+/* ================= Ticker ================= */
+(function ticker(){
+  const items = ['System online','Open to work','Laravel','PHP','JavaScript','Responsive design','Git & GitHub','Kathmandu sector'];
+  const set = $('#tickerSet');
+  const chunk = items.map(t => '<b>' + t + '</b><em>///</em>').join('');
+  set.innerHTML = chunk + chunk;
+  const clone = set.cloneNode(true);
+  clone.setAttribute('aria-hidden','true');
+  $('#tickerTrack').appendChild(clone);
+})();
+
+/* ================= Glitch pulse ================= */
+(function glitch(){
+  if (REDUCED) return;
+  const el = $('#glitchEl');
+  setInterval(() => {
+    el.classList.add('on');
+    setTimeout(() => el.classList.remove('on'), 340);
+  }, 3600);
+})();
+
+/* ================= Skill gauges ================= */
+ $$('.gauge').forEach(g => {
+  const lv = +g.dataset.lv, total = 10;
+  for (let i = 0; i < total; i++){
+    const seg = document.createElement('i');
+    if (i < lv) seg.className = 'f';
+    g.appendChild(seg);
+  }
+});
+
+/* ================= Scroll: progress + reveals ================= */
+const bar = $('#scrollbar i');
+addEventListener('scroll', () => {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, scrollY/max) : 0) + ')';
+}, { passive:true });
+
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold:.12 });
+ $$('.reveal').forEach(el => io.observe(el));
+
+/* ================= Mobile nav ================= */
+const tog = $('#navToggle'), mnav = $('#mobileNav');
+tog.addEventListener('click', () => {
+  const open = mnav.hidden;
+  mnav.hidden = !open;
+  tog.setAttribute('aria-expanded', String(open));
+  tog.textContent = open ? 'Close' : 'Menu';
+});
+mnav.addEventListener('click', e => {
+  if (e.target.tagName === 'A'){ mnav.hidden = true; tog.textContent = 'Menu'; }
+});
+
+/* ================= Archive modal ================= */
+const modal = $('#modal');
+let cur = 0;
+function fill(i){
+  cur = i;
+  const p = PROJECTS[i];
+  $('#mIdx').textContent   = 'MOD_' + pad(i+1) + ' // ' + pad(i+1) + '—' + pad(PROJECTS.length);
+  $('#mTitle').textContent = p.title;
+  $('#mYear').textContent  = p.year;
+  $('#mRole').textContent  = p.role;
+  $('#mCat').textContent   = p.cat;
+  $('#mStat').textContent  = p.status;
+  $('#mStat').style.color  = p.status === 'LIVE' ? 'var(--acc)' : 'var(--amber)';
+  $('#mDesc').textContent  = p.desc;
+  $('#mImg').src           = p.img;
+  $('#mImg').alt           = p.title;
+  $('#mTags').innerHTML    = p.tags.map(t => '<span>' + t + '</span>').join('');
+  const live = $('#mLive');
+  if (p.live){ live.href = p.live; live.style.display = 'inline-flex'; } else live.style.display = 'none';
+}
+function openModal(i){ fill(i); modal.classList.add('open'); document.body.classList.add('lock'); }
+function closeModal(){ modal.classList.remove('open'); document.body.classList.remove('lock'); }
+ $$('.mod').forEach(m => m.addEventListener('click', () => openModal(+m.dataset.index)));
+ $('#mClose').addEventListener('click', closeModal);
+ $('#mNext').addEventListener('click', () => { fill((cur+1) % PROJECTS.length); $('.m-panel').scrollTop = 0; });
+
+/* ================= QR lightbox ================= */
+const qrm = $('#qrModal');
+function openQR(k){
+  const q = QRS[k]; if (!q) return;
+  $('#qTitle').textContent = q.title;
+  $('#qHint').textContent  = q.hint;
+  $('#qImg').src = q.src;
+  qrm.classList.add('open'); document.body.classList.add('lock');
+}
+function closeQR(){ qrm.classList.remove('open'); document.body.classList.remove('lock'); }
+ $$('[data-qr]').forEach(b => b.addEventListener('click', () => openQR(b.dataset.qr)));
+ $('#qrClose').addEventListener('click', closeQR);
+qrm.addEventListener('click', e => { if (e.target === qrm) closeQR(); });
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  if (qrm.classList.contains('open')) closeQR();
+  else if (modal.classList.contains('open')) closeModal();
+});
+})();
+</script>
 </body>
 </html>
