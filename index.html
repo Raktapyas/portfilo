@@ -364,38 +364,10 @@ footer{border-top:1px solid var(--line);margin-top:6rem}
   </div>
 </div>
 
-<!-- ======= Nav ======= -->
-<nav id="top">
-  <a class="logo" href="#hero" data-cursor="link"><span class="sig"></span>RAKTA<b>//</b>PYAS</a>
-  <div class="nav-links mono">
-    <a href="#ident">Ident</a>
-    <a href="#archive">Archive</a>
-    <a href="#skills">Skills</a>
-    <a href="#uplink">Uplink</a>
-  </div>
-  <div class="nav-right">
-    <span class="mono" id="clock">NPT <b>--:--:--</b></span>
-    <a class="cv-mini mono" href="#uplink" data-cv>CV ↓</a>
-    <button id="navToggle" class="mono" aria-expanded="false">Menu</button>
-  </div>
-</nav>
-<div id="mobileNav" hidden>
-  <div class="nav-links mono" style="display:flex;flex-direction:column;gap:1.2rem;padding:1.4rem 1.3rem;border-bottom:1px solid var(--line);background:rgba(6,8,9,.96)">
-    <a href="#ident">Ident</a><a href="#archive">Archive</a><a href="#skills">Skills</a><a href="#uplink">Uplink</a>
-  </div>
-</div>
-
 <main>
   <!-- ======= Hero ======= -->
   <section id="hero">
-    <div class="hero-meta mono">
-      <span class="op"><img src="profile%201.jpg" alt="Basudev Dhakal">OPERATOR // BASUDEV DHAKAL</span>
-      <span>SECTOR: KATHMANDU, NP — 27.71°N / 85.32°E</span>
-      <span>BUILD ©2050</span>
-    </div>
-
     <div class="hero-title-wrap">
-      <p class="hero-kicker mono">Portfolio OS — online</p>
       <h1 class="glitch" id="glitchEl" data-text="Rakta Pyas">Rakta Pyas</h1>
       <p class="hero-sub">web developer — <b>laravel systems</b> / frontend engineering</p>
       <div class="hero-ctas">
@@ -414,8 +386,6 @@ footer{border-top:1px solid var(--line);margin-top:6rem}
       <div><span class="k">Local time</span><span class="v acc" id="msClock">--:--:--.---</span></div>
       <div><span class="k">Uplink</span><span class="v">Mail / WhatsApp / Discord</span></div>
     </div>
-
-    <div class="scrolldown mono" aria-hidden="true">SCROLL<i></i></div>
   </section>
 
   <!-- ======= Ticker ======= -->
@@ -426,7 +396,7 @@ footer{border-top:1px solid var(--line);margin-top:6rem}
   <!-- ======= 01 / Ident ======= -->
   <section id="ident">
     <div class="sec-head reveal">
-      <h2><span>01 //</span>Ident</h2>
+      <h2>Ident</h2>
       <span class="mono">Operator dossier — verified</span>
     </div>
 
@@ -473,7 +443,7 @@ footer{border-top:1px solid var(--line);margin-top:6rem}
   <!-- ======= 02 / Archive ======= -->
   <section id="archive">
     <div class="sec-head reveal">
-      <h2><span>02 //</span>Archive</h2>
+      <h2>Archive</h2>
       <span class="mono">05 modules — select to decrypt</span>
     </div>
 
@@ -515,7 +485,7 @@ footer{border-top:1px solid var(--line);margin-top:6rem}
   <!-- ======= 03 / Skills ======= -->
   <section id="skills">
     <div class="sec-head reveal">
-      <h2><span>03 //</span>Skills</h2>
+      <h2>Skills</h2>
       <span class="mono">System proficiency — self assessed</span>
     </div>
 
@@ -563,7 +533,7 @@ footer{border-top:1px solid var(--line);margin-top:6rem}
   <!-- ======= 04 / Uplink ======= -->
   <section id="uplink">
     <div class="sec-head reveal">
-      <h2><span>04 //</span>Uplink</h2>
+      <h2>Uplink</h2>
       <span class="mono">Kathmandu · UTC+5:45</span>
     </div>
 
@@ -574,11 +544,6 @@ footer{border-top:1px solid var(--line);margin-top:6rem}
         <a class="channel" href="mailto:raktapyas@gmail.com">
           <span class="lab mono">Mail</span>
           <span class="val">raktapyas@gmail.com
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
-        </a>
-        <a class="channel" href="tel:+9779849330437">
-          <span class="lab mono">Voice</span>
-          <span class="val">+977-9849330437
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
         </a>
         <a class="channel" href="https://wa.me/9779849330437" target="_blank" rel="noopener">
@@ -618,15 +583,7 @@ footer{border-top:1px solid var(--line);margin-top:6rem}
 </main>
 
 <footer>
-  <div class="foot-giant" aria-hidden="true">Rakta Pyas — 2050</div>
   <div class="foot-in mono">
-    <span>©2025 Basudev Dhakal — Designed &amp; coded from scratch</span>
-    <div class="socials">
-      <a href="https://github.com/raktapyas" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://wa.me/9779849330437" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="mailto:raktapyas@gmail.com">Mail</a>
-      <a href="tel:+9779849330437">Voice</a>
-    </div>
     <a id="toTop" href="#hero">Return to surface
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V6m0 0l-6 6m6-6l6 6"/></svg></a>
   </div>
@@ -850,15 +807,17 @@ const io = new IntersectionObserver(es => es.forEach(e => {
 
 /* ================= Mobile nav ================= */
 const tog = $('#navToggle'), mnav = $('#mobileNav');
-tog.addEventListener('click', () => {
-  const open = mnav.hidden;
-  mnav.hidden = !open;
-  tog.setAttribute('aria-expanded', String(open));
-  tog.textContent = open ? 'Close' : 'Menu';
-});
-mnav.addEventListener('click', e => {
-  if (e.target.tagName === 'A'){ mnav.hidden = true; tog.textContent = 'Menu'; }
-});
+if (tog && mnav){
+  tog.addEventListener('click', () => {
+    const open = mnav.hidden;
+    mnav.hidden = !open;
+    tog.setAttribute('aria-expanded', String(open));
+    tog.textContent = open ? 'Close' : 'Menu';
+  });
+  mnav.addEventListener('click', e => {
+    if (e.target.tagName === 'A'){ mnav.hidden = true; tog.textContent = 'Menu'; }
+  });
+}
 
 /* ================= Archive modal ================= */
 const modal = $('#modal');
