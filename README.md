@@ -11,6 +11,6 @@ The gate opens when you **speak “namaste”** into the microphone — Chrome o
 mic permission required. 
 
 
-**THE VOID REMEMBERS YOU.**
+
 
 
