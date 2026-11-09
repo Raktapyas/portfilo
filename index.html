@@ -1,553 +1,435 @@
 <!DOCTYPE html>
-<html lang="en" data-md-color-scheme="slate" data-md-color-primary="crimson">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
-<title>RAKTAPYAS — Basudev Dhakal · Portfolio Docs</title>
-<meta name="description" content="Basudev Dhakal (RAKTAPYAS) — full-stack and backend operator. Laravel, Filament, Docker, MySQL/PostgreSQL. Ten deployed artifacts, six years of production work.">
-<meta name="theme-color" content="#a3122c">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23a3122c'/><path d='M9 10l6 6-6 6M18 22h6' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+<title>RAKTAPYAS — Basudev Dhakal · Full-stack &amp; Backend Developer</title>
+<meta name="description" content="Basudev Dhakal (RAKTAPYAS) — full-stack and backend developer. Laravel, Filament, Docker, MySQL/PostgreSQL. Ten deployed production systems.">
+<meta name="theme-color" content="#e01e37">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'><rect width='16' height='16' fill='%2313141c'/><path fill='%23e01e37' d='M1 1h5v5H1zM10 1h5v5h-5zM6 6h4v4H6zM1 10h5v5H1zM10 10h5v5h-5z'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=JetBrains+Mono:wght@100..800&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   RAKTAPYAS://DOCS — TTE-inspired docs theme
-   Palette mirrors MkDocs Material "slate" + crimson.
-   Body type: Geist Mono, as used on flaviocopes.com.
+   RAKTAPYAS — pixel-terminal portfolio
+   Dark surfaces, sharp borders, pixel wordmark, crimson brand.
    ============================================================ */
 :root{
-  --hue:350;
-  --bg:hsl(var(--hue) 15% 14%);
-  --bg-soft:hsl(var(--hue) 15% 18%);
-  --bg-hard:#0b090a;
-  --fg:hsla(var(--hue),15%,90%,.82);
-  --fg-strong:hsla(var(--hue),15%,95%,.95);
-  --fg-light:hsla(var(--hue),15%,90%,.56);
-  --fg-lighter:hsla(var(--hue),15%,90%,.32);
-  --line:hsla(var(--hue),15%,90%,.12);
-  --line-strong:hsla(var(--hue),15%,90%,.2);
-  --primary:#a3122c;
-  --primary-dark:#820d23;
-  --primary-light:#c41e3a;
-  --link:#ff6b81;
-  --accent:#ff3b5c;
-  --rose:#ff8fa3;
-  --crimson-deep:#7a0a20;
-  --green:#45bf55;
-  --amber:#eda000;
-  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --sans:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --header-h:2.4rem;
-  --shadow:0 .2rem .5rem rgba(0,0,0,.28),0 0 .05rem rgba(0,0,0,.4);
-  --radius:.15rem;
+  --bg-deep:#13141c;
+  --bg:#1a1b26;
+  --surface:#1f2230;
+  --surface-2:#24283b;
+  --border-subtle:#2a2e44;
+  --border-strong:#414868;
+  --text:#d7d9e6;
+  --text-secondary:#a9b1d6;
+  --text-muted:#7f87a8;
+  --brand:#e01e37;
+  --brand-bright:#ff3b5c;
+  --brand-soft:rgba(224,30,55,.12);
+  --brand-ink:#0c0e10;
+  --selection:#3a2028;
+  --font-sans:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --nav-h:3.5rem;
+  --measure:44rem;
+  --wide:72rem;
 }
 *,*::before,*::after{box-sizing:border-box}
 html{
-  font-size:125%;
+  background:var(--bg);
   scroll-behavior:smooth;
-  scroll-padding-top:calc(var(--header-h) + .9rem);
+  scroll-padding-top:calc(var(--nav-h) + 1rem);
   -webkit-text-size-adjust:100%;
 }
 body{
   margin:0;
-  min-height:100vh;
-  background:
-    radial-gradient(1100px 520px at 50% -12%,rgba(220,20,60,.18),transparent 70%),
-    var(--bg);
-  color:var(--fg);
-  font-family:var(--sans);
-  font-size:.8rem;
-  font-weight:400;
-  line-height:1.65;
+  background:transparent;
+  color:var(--text);
+  font-family:var(--font-sans);
+  font-size:1rem;
+  line-height:1.6;
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
+  overflow-x:clip;
 }
-body::before{
-  content:'';
+#pixelField{
   position:fixed;
   inset:0;
-  z-index:-1;
+  z-index:0;
+  width:100%;
+  height:100%;
   pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);
-  background-size:2.5rem 2.5rem;
-  -webkit-mask-image:radial-gradient(circle at 50% 0,#000,transparent 72%);
-  mask-image:radial-gradient(circle at 50% 0,#000,transparent 72%);
 }
-::selection{background:rgba(220,20,60,.42);color:#fff}
-::-webkit-scrollbar{width:9px;height:9px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:#453a3c;border-radius:9px;border:2px solid var(--bg)}
-::-webkit-scrollbar-thumb:hover{background:#5a4a4d}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-a{color:var(--link)}
+main,.site-footer{position:relative;z-index:1}
+::selection{background:var(--selection);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg-deep)}
+::-webkit-scrollbar-thumb{background:#3a3f58;border:2px solid var(--bg-deep)}
+::-webkit-scrollbar-thumb:hover{background:var(--brand)}
+:focus-visible{outline:2px solid var(--brand-bright);outline-offset:2px}
+a{color:var(--brand-bright)}
 img{max-width:100%}
 
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
 .skip-link{
-  position:fixed;top:-4rem;left:.5rem;z-index:100;
-  background:var(--primary);color:#fff;padding:.45rem .9rem;border-radius:var(--radius);
-  font-size:.7rem;text-decoration:none;transition:top .15s ease;
+  position:fixed;top:-4rem;left:1rem;z-index:100;
+  background:var(--brand);color:var(--brand-ink);
+  padding:.6rem .9rem;font-family:var(--font-mono);font-size:.75rem;
+  text-decoration:none;transition:top .15s ease;
 }
-.skip-link:focus{top:.5rem}
-
-/* ============ ANNOUNCE ============ */
-.announce{
-  background:var(--primary-dark);
-  color:#fff;
-  font-size:.62rem;
-  letter-spacing:.015em;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-.announce__inner{max-width:76.25rem;margin:0 auto;padding:.42rem 1rem;text-align:center}
-.announce .dot{
-  display:inline-block;width:.42rem;height:.42rem;border-radius:50%;
-  background:#7cfc9a;box-shadow:0 0 8px #7cfc9a;margin-right:.35rem;vertical-align:middle;
-  animation:pulse 2s ease-in-out infinite;
-}
-.announce a{color:#fff;text-decoration:underline;text-underline-offset:2px}
-.announce a:hover{opacity:.85}
+.skip-link:focus{top:1rem}
 
 /* ============ HEADER ============ */
-.header{
-  position:sticky;top:0;z-index:40;
-  background:var(--primary);
-  color:#fff;
-  box-shadow:0 .1rem .25rem rgba(0,0,0,.24);
+.site-header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(26,27,38,.84);
+  border-bottom:1px solid var(--border-subtle);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
 }
-.header__inner{
-  max-width:76.25rem;margin:0 auto;padding:0 1rem;
-  height:var(--header-h);
-  display:flex;align-items:center;gap:.75rem;
+.nav-wrap{
+  max-width:var(--wide);margin:0 auto;height:var(--nav-h);
+  display:flex;align-items:center;gap:1.25rem;
+  padding:0 1.5rem;
 }
-.nav-toggle{
-  display:none;align-items:center;justify-content:center;
-  width:2rem;height:2rem;padding:0;border:0;border-radius:var(--radius);
-  background:rgba(255,255,255,.10);color:#fff;cursor:pointer;
+.brand{
+  display:flex;align-items:center;gap:.6rem;
+  color:var(--text);text-decoration:none;flex-shrink:0;
 }
-.nav-toggle:hover{background:rgba(255,255,255,.18)}
-.nav-toggle svg{width:1.05rem;height:1.05rem}
-.logo{display:flex;align-items:center;gap:.5rem;color:#fff;text-decoration:none;min-width:0}
-.logo__mark{
+.brand-mark{width:22px;height:22px;color:var(--brand);flex-shrink:0}
+.brand-name{
+  font-family:var(--font-mono);font-size:.8rem;font-weight:700;
+  letter-spacing:.1em;white-space:nowrap;
+}
+.nav-links{display:flex;align-items:center;gap:1.35rem;margin-left:.5rem}
+.nav-links a{
+  color:var(--text-secondary);text-decoration:none;font-size:.8125rem;
+  transition:color .15s ease;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-actions{margin-left:auto;display:flex;align-items:center;gap:.4rem}
+.icon-link{
+  width:2.1rem;height:2.1rem;
   display:inline-flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:.7rem;font-weight:700;line-height:1;
-  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);
-  padding:.22rem .32rem;border-radius:var(--radius);
+  border:1px solid transparent;color:var(--text-secondary);
+  text-decoration:none;transition:color .15s,border-color .15s,background .15s;
 }
-.logo__text{display:flex;align-items:baseline;gap:.4rem;font-size:.78rem;font-weight:500;letter-spacing:.02em;white-space:nowrap}
-.logo__sub{
-  font-family:var(--mono);font-size:.5rem;font-weight:400;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(255,255,255,.62);
-  border:1px solid rgba(255,255,255,.28);padding:.02rem .25rem;border-radius:2px;
+.icon-link:hover{color:var(--brand-bright);border-color:var(--border-subtle);background:var(--brand-soft)}
+.icon-link svg{width:1rem;height:1rem;fill:currentColor}
+.icon-link svg.stroke{fill:none;stroke:currentColor}
+.menu-btn{
+  display:none;width:2.25rem;height:2.25rem;
+  align-items:center;justify-content:center;
+  border:1px solid var(--border-subtle);background:transparent;
+  color:var(--text);cursor:pointer;margin-left:auto;
 }
-.header__meta{display:flex;align-items:center;gap:.8rem;margin-left:auto;font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.68)}
-.header__clock{white-space:nowrap}
-.header__clock small{color:rgba(255,255,255,.45);font-size:.9em}
-.source{
-  display:inline-flex;align-items:center;gap:.35rem;
-  color:#fff;text-decoration:none;font-size:.6rem;letter-spacing:.04em;
-  padding:.28rem .5rem;border:1px solid rgba(255,255,255,.28);border-radius:var(--radius);
-  transition:background .15s,border-color .15s;
+.menu-btn:hover{border-color:var(--brand);color:var(--brand-bright)}
+.menu-btn svg{width:1.1rem;height:1.1rem}
+.mobile-menu{
+  display:none;border-top:1px solid var(--border-subtle);
+  background:var(--bg);
 }
-.source:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.5)}
-.source svg{width:.85rem;height:.85rem;fill:currentColor}
-
-/* ============ LAYOUT ============ */
-.layout{
-  max-width:76.25rem;
-  margin:0 auto;
-  padding:0 1rem;
-  display:grid;
-  grid-template-columns:12.1rem minmax(0,1fr) 12.1rem;
-  gap:1.4rem;
+.mobile-menu.open{display:block}
+.mobile-menu a{
+  display:block;padding:.9rem 1.5rem;
+  border-bottom:1px solid var(--border-subtle);
+  font-family:var(--font-mono);font-size:.72rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-secondary);text-decoration:none;
 }
-.main{min-width:0;padding:1.7rem 0 2rem;display:flex;flex-direction:column}
-.prose{max-width:61rem;width:100%}
-.sidebar,.toc{
-  position:sticky;
-  top:calc(var(--header-h) + 1rem);
-  align-self:start;
-  max-height:calc(100vh - var(--header-h) - 2rem);
-  overflow-y:auto;
-  padding-top:1.6rem;
-  scrollbar-width:thin;
-}
-.sidebar__inner{padding-right:.2rem}
-.nav-close{
-  display:none;position:absolute;top:.75rem;right:.75rem;
-  width:1.9rem;height:1.9rem;align-items:center;justify-content:center;
-  border:1px solid var(--line-strong);border-radius:var(--radius);
-  background:transparent;color:var(--fg-light);font-size:.75rem;cursor:pointer;
-}
-.nav-close:hover{color:var(--link);border-color:var(--link)}
-.nav{list-style:none;margin:0;padding:0}
-.nav__title,.toc__title{
-  font-family:var(--mono);font-size:.55rem;font-weight:500;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--fg-lighter);
-  margin:0 0 .45rem .6rem;
-}
-.nav__link{
-  display:block;
-  padding:.32rem .6rem;
-  border-left:2px solid transparent;
-  border-radius:0 var(--radius) var(--radius) 0;
-  color:var(--fg-light);
-  font-size:.68rem;
-  text-decoration:none;
-  transition:color .15s,background .15s,border-color .15s;
-}
-.nav__link:hover{color:var(--fg);background:rgba(255,255,255,.035)}
-.nav__link.active{color:var(--link);border-left-color:var(--link);background:rgba(220,20,60,.09);font-weight:500}
-.toc ul{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)}
-.toc a{
-  display:block;
-  margin-left:-1px;
-  padding:.2rem 0 .2rem .65rem;
-  border-left:2px solid transparent;
-  color:var(--fg-light);
-  font-size:.6rem;
-  line-height:1.45;
-  text-decoration:none;
-  transition:color .15s,border-color .15s;
-}
-.toc a:hover{color:var(--fg)}
-.toc a.active{color:var(--link);border-left-color:var(--link)}
-/* ==CSS-PART-2== */
-
-/* ============ HERO ============ */
-.hero{margin:0 0 2rem}
-.hero__frame{
-  position:relative;
-  background:var(--bg-hard);
-  border:1px solid var(--line-strong);
-  border-radius:.25rem;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  cursor:pointer;
-  margin-bottom:1.5rem;
-  transition:border-color .2s,box-shadow .2s;
-}
-.hero__frame:hover{border-color:rgba(220,20,60,.55);box-shadow:0 0 0 1px rgba(220,20,60,.25),var(--shadow)}
-.hero__frame::after{
-  content:'click to replay';
-  position:absolute;right:.55rem;bottom:.45rem;
-  font-family:var(--mono);font-size:.48rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--fg-lighter);opacity:0;transition:opacity .2s;
-}
-.hero__frame:hover::after{opacity:1}
-.hero__bar{
-  display:flex;align-items:center;gap:.32rem;
-  padding:.45rem .7rem;
-  background:rgba(255,255,255,.045);
-  border-bottom:1px solid var(--line);
-}
-.hero__dot{width:.44rem;height:.44rem;border-radius:50%;background:#4a3f42}
-.hero__dot:nth-child(1){background:#ff5f56}
-.hero__dot:nth-child(2){background:#ffbd2e}
-.hero__dot:nth-child(3){background:#27c93f}
-.hero__title{
-  margin-left:.5rem;font-family:var(--mono);font-size:.55rem;
-  color:var(--fg-lighter);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-}
-.hero__screen{
-  padding:1.35rem .8rem 1.5rem;
-  display:flex;justify-content:center;
-  overflow-x:auto;
-  background:
-    radial-gradient(600px 180px at 50% 0,rgba(220,20,60,.08),transparent 70%),
-    var(--bg-hard);
-}
-.fx-screen{
-  display:inline-block;
-  font-family:var(--mono);
-  font-size:clamp(4.5px,1.3vw,13px);
-  line-height:1.12;
-  white-space:pre;
-  text-align:left;
-  filter:drop-shadow(0 0 10px rgba(220,20,60,.18));
-}
-.fx-row{white-space:pre;height:1.12em}
-.fx-cell{display:inline-block;width:.6em;text-align:center}
-.hero__eyebrow{
-  margin:0 0 .35rem;
-  font-family:var(--mono);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--link);
-}
-.hero h1{
-  margin:0;
-  font-size:2.05rem;
-  font-weight:300;
-  line-height:1.18;
-  letter-spacing:-.015em;
-  color:var(--fg-strong);
-}
-.hero__alias{
-  display:inline-block;
-  font-family:var(--mono);
-  font-size:.62rem;
-  font-weight:400;
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  color:var(--link);
-  border:1px solid rgba(220,20,60,.4);
-  border-radius:2px;
-  padding:.12rem .4rem;
-  vertical-align:middle;
-  margin-left:.35rem;
-}
-.hero__lead{max-width:38rem;margin:.8rem 0 0;font-size:.86rem;color:var(--fg-light);line-height:1.7}
-.actions{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.1rem}
+.mobile-menu a:hover{color:var(--brand-bright);background:var(--brand-soft)}
 
 /* ============ BUTTONS ============ */
-.md-button{
-  display:inline-flex;align-items:center;gap:.35rem;
-  padding:.38rem .8rem;
-  border:1px solid var(--line-strong);
-  border-radius:var(--radius);
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.65rem 1.05rem;
+  border:1px solid var(--border-strong);
   background:transparent;
-  color:var(--fg);
-  font-family:var(--mono);
-  font-size:.58rem;
-  font-weight:500;
-  letter-spacing:.06em;
-  text-transform:uppercase;
-  text-decoration:none;
-  transition:background .15s,border-color .15s,color .15s,transform .15s;
+  color:var(--text);
+  font-family:var(--font-mono);
+  font-size:.7rem;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s;
 }
-.md-button:hover{border-color:var(--link);color:var(--link);background:rgba(220,20,60,.07)}
-.md-button:active{transform:translateY(1px)}
-.md-button--primary{background:var(--primary);border-color:var(--primary);color:#fff}
-.md-button--primary:hover{background:var(--primary-light);border-color:var(--primary-light);color:#fff}
-.prose a.md-button{color:var(--fg);text-decoration:none}
-.prose a.md-button:hover{color:var(--link);text-decoration:none}
-.prose a.md-button--primary,
-.prose a.md-button--primary:hover{color:#fff}
+.btn:hover{border-color:var(--brand);color:var(--brand-bright);background:var(--brand-soft)}
+.btn-brand{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.btn-brand:hover{background:var(--brand-bright);border-color:var(--brand-bright);color:var(--brand-ink)}
+.btn-sm{padding:.45rem .75rem;font-size:.65rem}
+.btn svg{width:.9rem;height:.9rem;flex-shrink:0}
+.btn svg.fill{fill:currentColor}
 
-/* ============ PROSE ============ */
-.prose h2{
-  margin:2.3rem 0 .85rem;
-  padding-bottom:.38rem;
-  border-bottom:1px solid var(--line);
-  font-size:1.28rem;
-  font-weight:300;
-  line-height:1.25;
-  letter-spacing:-.005em;
-  color:var(--fg-strong);
+/* ============ HERO ============ */
+.hero{
+  position:relative;
+  max-width:var(--wide);margin:0 auto;
+  min-height:calc(100svh - var(--nav-h));
+  padding:5rem 1.5rem 6rem;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
 }
-.headerlink{
-  margin-left:.4rem;
-  font-family:var(--mono);
-  font-size:.62em;
-  color:var(--fg-lighter);
-  text-decoration:none;
-  opacity:0;
-  transition:opacity .15s,color .15s;
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.38rem .7rem;
+  border:1px solid var(--border-strong);
+  background:rgba(31,34,48,.72);
+  font-family:var(--font-mono);font-size:.68rem;
+  color:var(--text-secondary);text-decoration:none;
+  transition:border-color .15s,color .15s,background .15s;
+  animation:fadeUp .6s both;
 }
-.prose h2:hover .headerlink,.headerlink:focus-visible{opacity:1}
-.headerlink:hover{color:var(--link);text-decoration:none}
-.prose h3{margin:1.4rem 0 .45rem;font-size:.92rem;font-weight:500;color:var(--fg-strong)}
-.prose p{margin:.6rem 0;color:var(--fg)}
-.prose a{color:var(--link);text-decoration:none}
-.prose a:hover{text-decoration:underline;text-underline-offset:2px}
-.prose strong{color:var(--fg-strong);font-weight:500}
-.prose ul{margin:.55rem 0 .85rem;padding-left:1.1rem}
-.prose li{margin:.24rem 0}
-.prose code{
-  font-family:var(--mono);font-size:.85em;
-  background:rgba(255,255,255,.06);
-  border:1px solid var(--line);
-  border-radius:2px;
-  padding:.02rem .25rem;
+.hero-badge:hover{border-color:var(--brand);color:var(--text);background:var(--brand-soft)}
+.hero-badge b{color:var(--brand-bright);font-weight:600}
+.hero-badge span{color:var(--brand-bright)}
+.hero-art-wrap{
+  position:relative;width:100%;
+  margin:2.75rem 0 2rem;padding:1rem 0 1.75rem;
+  display:flex;justify-content:center;overflow:hidden;
+  animation:fadeUp .7s .08s both;
 }
-.features{list-style:none;padding:0!important;display:grid;gap:.28rem}
-.features li{position:relative;padding-left:1.15rem;color:var(--fg-light);font-size:.78rem}
-.features li::before{content:'▸';position:absolute;left:0;top:0;color:var(--link)}
+.hero-art-wrap::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:24%;
+  background:linear-gradient(transparent,var(--bg));
+  pointer-events:none;
+}
+.hero-art{
+  display:inline-block;
+  font-family:var(--font-mono);
+  font-size:clamp(5px,1.55vw,20px);
+  line-height:1.05;white-space:pre;text-align:left;
+  filter:drop-shadow(0 0 30px rgba(224,30,55,.22));
+}
+.hero h1{
+  margin:0;max-width:48rem;
+  font-size:clamp(1.5rem,3.2vw,2.35rem);
+  font-weight:600;line-height:1.2;letter-spacing:-.035em;
+  color:var(--text);animation:fadeUp .7s .16s both;
+}
+.hero h1 em{font-style:normal;color:var(--brand-bright)}
+.hero-sub{
+  max-width:34rem;margin:1.05rem 0 0;
+  color:var(--text-secondary);font-size:1rem;line-height:1.65;
+  animation:fadeUp .7s .24s both;
+}
+.hero-actions{
+  display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;
+  margin-top:2rem;animation:fadeUp .7s .32s both;
+}
+.hero-meta{
+  margin-top:2.75rem;
+  font-family:var(--font-mono);font-size:.64rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text-muted);
+  animation:fadeUp .7s .4s both;
+}
+/* ==CSS-PART-2== */
 
-/* ============ ADMONITIONS ============ */
-.admonition{
-  margin:1rem 0;
-  padding:.7rem .9rem;
-  border-left:.2rem solid var(--link);
-  border-radius:0 var(--radius) var(--radius) 0;
-  background:rgba(220,20,60,.08);
+/* ============ SECTIONS ============ */
+.section{
+  max-width:var(--wide);margin:0 auto;
+  padding:4.5rem 1.5rem;
+  border-top:1px solid var(--border-subtle);
 }
-.admonition__title{
-  font-family:var(--mono);font-size:.55rem;font-weight:500;
-  letter-spacing:.12em;text-transform:uppercase;color:var(--link);
-  margin-bottom:.22rem;
+.section-head{margin-bottom:2rem}
+.eyebrow{
+  display:block;margin-bottom:.55rem;
+  font-family:var(--font-mono);font-size:.68rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--brand-bright);
 }
-.admonition p{margin:.18rem 0;font-size:.72rem;color:var(--fg-light)}
-.admonition a{color:var(--link)}
-.admonition.tip{border-left-color:var(--green);background:rgba(69,191,85,.07)}
-.admonition.tip .admonition__title{color:var(--green)}
-.admonition.warn{border-left-color:var(--amber);background:rgba(237,160,0,.07)}
-.admonition.warn .admonition__title{color:var(--amber)}
+.section h2{
+  margin:0;font-size:clamp(1.4rem,2.5vw,2rem);
+  font-weight:600;line-height:1.15;letter-spacing:-.03em;color:var(--text);
+}
+.section-lede{max-width:var(--measure);margin:0 0 1.75rem;color:var(--text-secondary)}
+.section-lede a{color:var(--brand-bright);text-decoration:none}
+.section-lede a:hover{text-decoration:underline;text-underline-offset:3px}
 
-/* ============ CODE ============ */
-.codeblock{
-  margin:.85rem 0;
-  background:var(--bg-soft);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  overflow:hidden;
+/* ============ FEATURES ============ */
+.feature-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
+  gap:1rem;
 }
-.codeblock__head{
-  display:flex;align-items:center;justify-content:space-between;gap:.6rem;
-  padding:.3rem .65rem;
-  border-bottom:1px solid var(--line);
-  background:rgba(0,0,0,.16);
-  font-family:var(--mono);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--fg-lighter);
+.feature{
+  position:relative;padding:1.5rem;
+  border:1px solid var(--border-subtle);
+  background:var(--surface);
+  transition:border-color .15s,background .15s;
 }
-.codeblock pre{margin:0;padding:.75rem .95rem;overflow-x:auto;font-family:var(--mono);font-size:.68rem;line-height:1.7;color:#c8d3e0;tab-size:2}
-.copy{
-  font-family:var(--mono);font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--fg-light);background:transparent;border:1px solid var(--line-strong);
-  border-radius:2px;padding:.12rem .4rem;cursor:pointer;transition:color .15s,border-color .15s;
+.feature:hover{border-color:var(--border-strong);background:var(--surface-2)}
+.feature::before{
+  content:'';position:absolute;top:0;left:0;
+  width:8px;height:8px;background:var(--brand);
 }
-.copy:hover{color:var(--link);border-color:var(--link)}
-.copy.done{color:var(--green);border-color:var(--green)}
-.tok-cmd{color:#ff8fa3}
-.tok-flag{color:#ffb86b}
-.tok-str{color:#2fb170}
-.tok-com{color:var(--fg-lighter)}
-.tok-num{color:#ff7a5c}
+.feature-icon{
+  width:2rem;height:2rem;display:block;margin-bottom:1.25rem;
+  color:var(--brand);
+}
+.feature h3{margin:0 0 .5rem;font-size:1rem;font-weight:600;letter-spacing:-.01em}
+.feature p{margin:0;font-size:.875rem;line-height:1.6;color:var(--text-secondary)}
+
+.status{
+  display:flex;align-items:flex-start;gap:.75rem;
+  margin-top:1.5rem;padding:1rem 1.25rem;
+  border:1px solid var(--border-subtle);background:var(--surface);
+}
+.status-dot{
+  width:.5rem;height:.5rem;margin-top:.4rem;flex-shrink:0;
+  background:var(--brand-bright);box-shadow:0 0 10px var(--brand);
+  animation:pulse 2s ease-in-out infinite;
+}
+.status p{margin:0;font-size:.85rem;color:var(--text-secondary)}
+.status a{color:var(--brand-bright);text-decoration:none}
+.status a:hover{text-decoration:underline;text-underline-offset:3px}
 
 /* ============ SKILLS ============ */
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.8rem 1.5rem;margin-top:1.05rem}
+.skills-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
+  gap:1.5rem 2.5rem;
+}
 .skill{min-width:0}
-.skill__top{display:flex;align-items:baseline;justify-content:space-between;gap:.6rem;margin-bottom:.28rem}
-.skill__name{font-size:.7rem;color:var(--fg)}
-.skill__pct{font-family:var(--mono);font-size:.55rem;color:var(--link)}
-.meter{display:flex;gap:2px;height:.42rem}
-.meter i{flex:1;background:rgba(255,255,255,.055);border-radius:1px}
-.meter i.f{background:linear-gradient(90deg,var(--crimson-deep),var(--rose));box-shadow:0 0 6px rgba(255,107,129,.28)}
-/* ==CSS-PART-3== */
+.skill__top{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:1rem;margin-bottom:.5rem;
+}
+.skill__name{font-size:.85rem;color:var(--text)}
+.skill__pct{font-family:var(--font-mono);font-size:.7rem;color:var(--brand-bright)}
+.meter{display:flex;gap:2px;height:.5rem}
+.meter i{flex:1;background:var(--surface-2)}
+.meter i.f{background:var(--brand);box-shadow:0 0 8px rgba(224,30,55,.35)}
 
-/* ============ SHOWROOM ============ */
-.showroom{
-  margin:1.05rem 0 0;
-  background:var(--bg-soft);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  overflow:hidden;
+/* ============ WORK ============ */
+.work-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(18rem,1fr));
+  gap:1rem;
 }
-.showroom__tabs{
-  display:flex;flex-wrap:wrap;align-items:center;gap:.3rem;
-  padding:.55rem .65rem;
-  border-bottom:1px solid var(--line);
-  background:rgba(0,0,0,.18);
-}
-.fx-btn{
-  font-family:var(--mono);font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--fg-light);background:transparent;border:1px solid var(--line-strong);
-  border-radius:2px;padding:.24rem .55rem;cursor:pointer;
-  transition:color .15s,border-color .15s,background .15s,box-shadow .15s;
-}
-.fx-btn:hover{color:var(--link);border-color:var(--link)}
-.fx-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;box-shadow:0 0 14px rgba(220,20,60,.35)}
-.fx-btn--ghost{margin-left:auto}
-.showroom__screen{
-  display:flex;justify-content:center;
-  padding:1.35rem .8rem;
-  overflow-x:auto;
-  background:
-    radial-gradient(600px 200px at 50% 0,rgba(220,20,60,.09),transparent 72%),
-    var(--bg-hard);
-}
-.showroom__meta{
-  display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;
-  padding:.5rem .75rem;
-  border-top:1px solid var(--line);
-  font-family:var(--mono);font-size:.52rem;line-height:1.5;
-  color:var(--fg-lighter);letter-spacing:.03em;
-}
-.showroom__meta b{color:var(--rose);font-weight:400}
-.showroom__meta #fxDesc{max-width:34rem}
-
-/* ============ ARTIFACT CARDS ============ */
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(15.5rem,1fr));gap:.75rem;margin-top:1.05rem}
 .card{
-  position:relative;
-  display:flex;flex-direction:column;gap:.32rem;
-  padding:.8rem .9rem;
-  background:var(--bg-soft);
-  border:1px solid var(--line);
-  border-left:2px solid var(--line-strong);
-  border-radius:var(--radius);
-  transition:transform .18s ease,border-color .18s,box-shadow .18s,background .18s;
+  position:relative;display:flex;flex-direction:column;gap:.6rem;
+  padding:1.35rem;
+  border:1px solid var(--border-subtle);
+  background:var(--surface);
+  transition:border-color .15s,background .15s,box-shadow .15s;
 }
 .card:hover{
-  transform:translateY(-2px);
-  border-color:var(--line-strong);
-  border-left-color:var(--link);
-  background:hsl(var(--hue) 15% 20%);
-  box-shadow:var(--shadow);
+  border-color:var(--brand);background:var(--surface-2);
+  box-shadow:inset 0 0 0 1px var(--brand);
 }
-.card__idx{font-family:var(--mono);font-size:.5rem;letter-spacing:.14em;color:var(--fg-lighter)}
+.card::after{
+  content:'';position:absolute;right:0;bottom:0;
+  width:0;height:0;background:var(--brand);transition:width .15s,height .15s;
+}
+.card:hover::after{width:8px;height:8px}
+.card__top{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.card__idx{font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;color:var(--text-muted)}
 .card__live{
-  position:absolute;top:.72rem;right:.72rem;
-  display:inline-flex;align-items:center;gap:.22rem;
-  font-family:var(--mono);font-size:.46rem;letter-spacing:.1em;color:var(--green);
+  display:inline-flex;align-items:center;gap:.35rem;
+  font-family:var(--font-mono);font-size:.58rem;letter-spacing:.1em;
+  color:var(--brand-bright);
 }
-.card__live i{width:.28rem;height:.28rem;border-radius:50%;background:var(--green);box-shadow:0 0 5px var(--green);animation:pulse 2s ease-in-out infinite}
-.card__title{margin:.12rem 0 0;font-size:.82rem;font-weight:500;line-height:1.3;color:var(--fg-strong)}
+.card__live i{
+  width:.35rem;height:.35rem;background:var(--brand-bright);
+  box-shadow:0 0 8px var(--brand);animation:pulse 2s ease-in-out infinite;
+}
+.card__title{margin:.2rem 0 0;font-size:1.05rem;font-weight:600;line-height:1.3;letter-spacing:-.01em;color:var(--text)}
 .card__tag{
   align-self:flex-start;
-  font-family:var(--mono);font-size:.46rem;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--link);border:1px solid rgba(220,20,60,.4);border-radius:2px;
-  padding:.1rem .32rem;margin-top:.05rem;
+  font-family:var(--font-mono);font-size:.6rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--brand-bright);
+  border:1px solid rgba(224,30,55,.35);padding:.15rem .4rem;
 }
-.card__desc{flex:1;margin:.15rem 0 .1rem;font-size:.68rem;line-height:1.55;color:var(--fg-light)}
+.card__desc{flex:1;margin:.25rem 0;font-size:.85rem;line-height:1.55;color:var(--text-secondary)}
 .card__link{
-  display:inline-flex;align-items:center;gap:.25rem;align-self:flex-start;
-  font-family:var(--mono);font-size:.55rem;color:var(--link);text-decoration:none;
-  margin-top:.2rem;
+  display:inline-flex;align-items:center;gap:.35rem;align-self:flex-start;
+  margin-top:.35rem;font-family:var(--font-mono);font-size:.7rem;
+  color:var(--brand-bright);text-decoration:none;
 }
-.card__link:hover{text-decoration:underline;text-underline-offset:2px}
+.card__link:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* ============ TERMINAL ============ */
+.terminal{border:1px solid var(--border-strong);background:var(--bg-deep)}
+.terminal__bar{
+  display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;
+  padding:.6rem .75rem;border-bottom:1px solid var(--border-subtle);
+  background:var(--surface);
+}
+.fx-btn{
+  font-family:var(--font-mono);font-size:.65rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--text-secondary);
+  background:transparent;border:1px solid var(--border-subtle);
+  padding:.35rem .65rem;cursor:pointer;
+  transition:color .15s,border-color .15s,background .15s;
+}
+.fx-btn:hover{color:var(--text);border-color:var(--border-strong)}
+.fx-btn.active{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.fx-btn--ghost{margin-left:auto}
+.terminal__screen{
+  display:flex;justify-content:center;
+  padding:2rem 1rem;overflow-x:auto;
+  background:
+    radial-gradient(600px 240px at 50% 0,rgba(224,30,55,.08),transparent 70%),
+    var(--bg-deep);
+}
+.terminal__meta{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;
+  padding:.6rem .75rem;border-top:1px solid var(--border-subtle);
+  font-family:var(--font-mono);font-size:.6rem;line-height:1.5;
+  color:var(--text-muted);
+}
+.terminal__meta b{color:var(--brand-bright);font-weight:500}
+.terminal__meta #fxDesc{max-width:34rem}
+.fx-screen{
+  display:inline-block;font-family:var(--font-mono);
+  font-size:clamp(4px,1.1vw,12px);line-height:1.1;
+  white-space:pre;text-align:left;
+}
+.fx-row{white-space:pre;height:1.1em}
+.fx-cell{display:inline-block;width:.6em;text-align:center}
 
 /* ============ TIMELINE ============ */
-.timeline{position:relative;margin:1.05rem 0 0;padding-left:1.25rem;border-left:1px solid var(--line-strong)}
-.timeline__item{position:relative;padding-bottom:1.15rem}
+.timeline{border-left:1px solid var(--border-subtle);padding-left:1.75rem}
+.timeline__item{position:relative;padding-bottom:2rem}
 .timeline__item:last-child{padding-bottom:0}
 .timeline__item::before{
-  content:'';position:absolute;left:-1.38rem;top:.42rem;
-  width:.48rem;height:.48rem;border-radius:50%;
-  background:var(--bg);border:2px solid var(--link);
-  box-shadow:0 0 9px rgba(220,20,60,.55);
+  content:'';position:absolute;left:calc(-1.75rem - 4px);top:.55rem;
+  width:7px;height:7px;background:var(--brand);
+  box-shadow:0 0 10px rgba(224,30,55,.5);
 }
-.timeline__head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.timeline__title{margin:0;font-size:.78rem;font-weight:500;color:var(--fg-strong)}
-.timeline__time{font-family:var(--mono);font-size:.55rem;letter-spacing:.06em;color:var(--link);white-space:nowrap}
-.timeline ul{margin:.35rem 0 0;padding-left:1rem}
-.timeline li{margin:.2rem 0;font-size:.68rem;line-height:1.55;color:var(--fg-light)}
-.timeline p{margin:.2rem 0 0;font-size:.68rem;color:var(--fg-light)}
+.timeline__head{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;
+}
+.timeline__title{margin:0;font-size:1rem;font-weight:600;letter-spacing:-.01em}
+.timeline__time{
+  font-family:var(--font-mono);font-size:.68rem;
+  letter-spacing:.04em;color:var(--brand-bright);white-space:nowrap;
+}
+.timeline ul{margin:.6rem 0 0;padding-left:1.1rem}
+.timeline li{margin:.3rem 0;font-size:.85rem;line-height:1.55;color:var(--text-secondary)}
+.timeline p{margin:.45rem 0 0;font-size:.85rem;color:var(--text-secondary)}
 
 /* ============ CONTACT ============ */
-.channels{display:grid;grid-template-columns:repeat(auto-fit,minmax(13.5rem,1fr));gap:.75rem;margin-top:1.05rem}
-.qr-card{
-  padding:.85rem;
-  background:var(--bg-soft);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  text-align:center;
-  cursor:pointer;
-  transition:border-color .18s,transform .18s,box-shadow .18s;
+.contact-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));
+  gap:1rem;margin-bottom:1.5rem;
 }
-.qr-card:hover{border-color:rgba(220,20,60,.55);transform:translateY(-2px);box-shadow:var(--shadow)}
+.qr-card{
+  padding:1.5rem;border:1px solid var(--border-subtle);
+  background:var(--surface);text-align:center;cursor:pointer;
+  transition:border-color .15s,background .15s;
+}
+.qr-card:hover{border-color:var(--brand);background:var(--surface-2)}
 .qr-card__label{
-  display:block;margin-bottom:.55rem;
-  font-family:var(--mono);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--link);
+  display:block;margin-bottom:1rem;
+  font-family:var(--font-mono);font-size:.65rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--brand-bright);
 }
 .qr-card__imgwrap{position:relative;display:inline-block}
 .qr-card img{
-  display:block;width:8rem;height:8rem;
-  image-rendering:pixelated;
-  background:#e9e2da;
+  display:block;width:9rem;height:9rem;
+  image-rendering:pixelated;background:#e9e2da;
   border:.25rem solid #e9e2da;
   filter:blur(.55rem) grayscale(1) contrast(1.3);
   transition:filter .6s steps(9);
@@ -555,104 +437,120 @@ img{max-width:100%}
 .qr-card.open img{filter:none}
 .qr-card__lock{
   position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  font-family:var(--mono);font-size:.5rem;letter-spacing:.06em;white-space:nowrap;
-  color:var(--link);background:rgba(11,14,20,.82);
-  border:1px solid rgba(220,20,60,.5);border-radius:2px;padding:.22rem .38rem;
-  pointer-events:none;transition:opacity .3s;
+  font-family:var(--font-mono);font-size:.58rem;letter-spacing:.06em;
+  white-space:nowrap;color:var(--brand-bright);
+  background:rgba(19,20,28,.88);
+  border:1px solid rgba(224,30,55,.45);
+  padding:.3rem .45rem;pointer-events:none;
+  transition:opacity .3s;
 }
 .qr-card.open .qr-card__lock{opacity:0}
-.qr-card__hint{display:block;margin-top:.5rem;font-size:.58rem;color:var(--fg-lighter)}
+.qr-card__hint{
+  display:block;margin-top:.75rem;
+  font-family:var(--font-mono);font-size:.62rem;color:var(--text-muted);
+}
+.contact-panel{
+  padding:1.5rem;border:1px solid var(--border-subtle);
+  background:var(--surface);display:flex;flex-direction:column;gap:.9rem;
+}
+.contact-row{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:1rem;padding-bottom:.9rem;
+  border-bottom:1px solid var(--border-subtle);
+}
+.contact-row:last-of-type{border-bottom:0;padding-bottom:0}
+.contact-row dt{
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--brand-bright);
+}
+.contact-row dd{margin:0;font-size:.85rem;color:var(--text-secondary);text-align:right}
+.contact-row dd a{color:var(--text);text-decoration:none}
+.contact-row dd a:hover{color:var(--brand-bright);text-decoration:underline;text-underline-offset:3px}
+.contact-actions{display:flex;flex-wrap:wrap;gap:.75rem}
 
 /* ============ DOSSIER ============ */
-.dossier{
-  margin:1.05rem 0 0;
-  padding:0 .9rem;
-  background:var(--bg-soft);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-}
+.dossier{border:1px solid var(--border-subtle);background:var(--surface)}
 .dossier summary{
-  display:flex;align-items:center;gap:.45rem;
-  padding:.62rem 0;
-  cursor:pointer;
-  list-style:none;
-  font-size:.72rem;font-weight:500;color:var(--link);
+  display:flex;align-items:center;gap:.6rem;
+  padding:1rem 1.25rem;cursor:pointer;list-style:none;
+  font-family:var(--font-mono);font-size:.75rem;letter-spacing:.04em;
+  color:var(--brand-bright);
 }
 .dossier summary::-webkit-details-marker{display:none}
-.dossier summary::before{content:'▸';display:inline-block;transition:transform .2s}
-.dossier[open] summary::before{transform:rotate(90deg)}
-.dossier summary:hover{text-decoration:underline;text-underline-offset:2px}
-.dossier__body{padding:.2rem 0 .85rem;border-top:1px solid var(--line)}
-.kv{display:grid;grid-template-columns:9.5rem 1fr;gap:.35rem .9rem;margin:0;padding:.55rem 0;border-bottom:1px solid var(--line)}
+.dossier summary::before{content:'+';font-family:var(--font-mono);font-weight:600}
+.dossier[open] summary::before{content:'−'}
+.dossier summary:hover{background:var(--brand-soft)}
+.dossier__body{border-top:1px solid var(--border-subtle);padding:.5rem 1.25rem 1rem}
+.kv{
+  display:grid;grid-template-columns:9rem 1fr;gap:.4rem 1rem;
+  margin:0;padding:.75rem 0;border-bottom:1px solid var(--border-subtle);
+}
 .kv:last-child{border-bottom:0}
-.kv dt{font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--link);padding-top:.12rem}
-.kv dd{margin:0;font-size:.7rem;line-height:1.6;color:var(--fg-light)}
+.kv dt{
+  font-family:var(--font-mono);font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--brand-bright);padding-top:.15rem;
+}
+.kv dd{margin:0;font-size:.85rem;line-height:1.6;color:var(--text-secondary)}
+.kv dd a{color:var(--text);text-decoration:none}
+.kv dd a:hover{color:var(--brand-bright);text-decoration:underline;text-underline-offset:3px}
 
 /* ============ FOOTER ============ */
-.footer{max-width:61rem;width:100%;margin-top:2.5rem;padding-top:1rem;border-top:1px solid var(--line)}
-.footer__nav{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-.footer__link{display:flex;flex-direction:column;gap:.12rem;color:var(--fg-light);font-size:.68rem;text-decoration:none}
-.footer__link small{font-family:var(--mono);font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-lighter)}
-.footer__link:hover{color:var(--link)}
-.footer__link--next{text-align:right}
-.footer__meta{
-  display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;
-  margin-top:1.15rem;padding-top:.75rem;border-top:1px solid var(--line);
-  font-family:var(--mono);font-size:.5rem;letter-spacing:.04em;color:var(--fg-lighter);
+.site-footer{border-top:1px solid var(--border-subtle);background:var(--bg-deep)}
+.footer-inner{
+  max-width:var(--wide);margin:0 auto;padding:2.5rem 1.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1.5rem;flex-wrap:wrap;
 }
-.footer__meta a{color:var(--fg-light);text-decoration:none}
-.footer__meta a:hover{color:var(--link)}
+.footer-brand{
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--font-mono);font-size:.75rem;letter-spacing:.08em;
+  color:var(--text);text-decoration:none;
+}
+.footer-brand .brand-mark{width:18px;height:18px}
+.footer-links{display:flex;flex-wrap:wrap;gap:1.25rem}
+.footer-links a{
+  font-size:.75rem;color:var(--text-secondary);text-decoration:none;
+  transition:color .15s;
+}
+.footer-links a:hover{color:var(--brand-bright)}
+.footer-note{
+  width:100%;margin-top:1.75rem;padding-top:1.25rem;
+  border-top:1px solid var(--border-subtle);
+  display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;flex-wrap:wrap;
+  font-family:var(--font-mono);font-size:.62rem;color:var(--text-muted);
+}
+.footer-note span{display:inline-flex;align-items:center;gap:.45rem}
+.footer-note i{
+  width:.4rem;height:.4rem;background:var(--brand);
+  box-shadow:0 0 8px var(--brand);animation:pulse 2s ease-in-out infinite;
+}
 
-/* ============ MOBILE DRAWER ============ */
-.backdrop{
-  display:none;
-  position:fixed;inset:0;z-index:55;
-  background:rgba(0,0,0,.58);
-  opacity:0;pointer-events:none;
-  transition:opacity .25s ease;
-}
-.backdrop.open{opacity:1;pointer-events:auto}
-
-@media(max-width:76.25em){
-  .layout{grid-template-columns:12.1rem minmax(0,1fr)}
-  .toc{display:none}
-}
-@media(max-width:60em){
-  .layout{display:block;padding:0 1rem}
-  .nav-toggle{display:inline-flex}
-  .sidebar{
-    position:fixed;top:0;left:0;bottom:0;z-index:60;
-    width:14rem;max-height:none;
-    padding:1.1rem 1rem;
-    background:var(--bg-soft);
-    border-right:1px solid var(--line-strong);
-    box-shadow:var(--shadow);
-    transform:translateX(-102%);
-    transition:transform .25s ease;
-  }
-  .sidebar.open{transform:none}
-  .nav-close{display:inline-flex}
-  .backdrop{display:block}
-  body.nav-open{overflow:hidden}
-  .main{padding-top:1.25rem}
-  .header__meta .header__role{display:none}
-  .hero__screen,.showroom__screen{justify-content:flex-start}
-  .fx-screen{font-size:clamp(4px,1.7vw,11px)}
-  .kv{grid-template-columns:1fr;gap:.12rem;padding:.5rem 0}
+/* ============ RESPONSIVE ============ */
+@media(max-width:860px){
+  .nav-links{display:none}
+  .nav-actions .icon-link{display:none}
+  .nav-actions .btn{display:none}
+  .menu-btn{display:inline-flex}
+  .nav-wrap{padding:0 1rem}
+  .hero{padding:3.5rem 1rem 4.5rem}
+  .hero h1 br{display:none}
+  .hero-art{font-size:clamp(4px,1.8vw,13px)}
+  .section{padding:3.5rem 1rem}
+  .kv{grid-template-columns:1fr;gap:.15rem;padding:.7rem 0}
   .kv dt{padding-top:0}
-  .footer__link--next{margin-left:auto}
+  .footer-inner{padding:2rem 1rem}
 }
-@media(max-width:34em){
-  .source__repo{display:none}
-  .header__clock{display:none}
-  .logo__sub{display:none}
-  .hero h1{font-size:1.6rem}
-  .hero__alias{display:block;margin:.45rem 0 0;width:max-content}
+@media(max-width:480px){
+  .hero-meta{font-size:.58rem;letter-spacing:.1em}
+  .hero-actions{width:100%;flex-direction:column}
+  .hero-actions .btn{width:100%}
+  .terminal__meta{font-size:.55rem}
   .fx-screen{font-size:5px}
-  .announce{font-size:.56rem}
-  .showroom__meta #fxDesc{max-width:none}
+  .contact-row{flex-direction:column;gap:.2rem}
+  .contact-row dd{text-align:left}
+  .footer-note{font-size:.56rem}
 }
-
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{
@@ -664,299 +562,282 @@ img{max-width:100%}
 </style>
 </head>
 <body>
+<canvas id="pixelField" aria-hidden="true"></canvas>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<a class="skip-link" href="#content">Skip to content</a>
-
-<div class="announce">
-  <div class="announce__inner">
-    <span class="dot" aria-hidden="true"></span>
-    Available for work — updated November 2026.
-    <a href="#contact">Open a channel →</a>
-  </div>
-</div>
-
-<header class="header">
-  <div class="header__inner">
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
+<header class="site-header">
+  <div class="nav-wrap">
+    <a class="brand" href="#top" aria-label="RAKTAPYAS home">
+      <svg class="brand-mark" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+        <path fill="currentColor" d="M1 1h5v5H1zM10 1h5v5h-5zM6 6h4v4H6zM1 10h5v5H1zM10 10h5v5h-5z"/>
+      </svg>
+      <span class="brand-name">RAKTAPYAS</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="icon-link" href="https://github.com/Raktapyas/portfilo" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      </a>
+      <a class="icon-link" href="mailto:raktapyas@gmail.com" aria-label="Email">
+        <svg class="stroke" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14"/><path d="m3 7 9 6 9-6"/></svg>
+      </a>
+      <a class="btn btn-brand btn-sm" href="#contact">Hire me</a>
+    </div>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
-    <a class="logo" href="#intro">
-      <span class="logo__mark" aria-hidden="true">&gt;_</span>
-      <span class="logo__text">RAKTAPYAS <span class="logo__sub">docs</span></span>
-    </a>
-    <div class="header__meta">
-      <span class="header__role">Full-stack / Backend</span>
-      <span class="header__clock" id="clock">--:--:-- <small>NPT</small></span>
-    </div>
-    <a class="source" href="https://github.com/Raktapyas/portfilo" target="_blank" rel="noopener" aria-label="View source on GitHub">
-      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
-      <span class="source__repo">Source</span>
-    </a>
   </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+    <a href="#resume">Dossier</a>
+    <a href="https://github.com/Raktapyas/portfilo" target="_blank" rel="noopener">GitHub ↗</a>
+  </nav>
 </header>
 
-<div class="backdrop" id="backdrop" aria-hidden="true"></div>
-
-<div class="layout">
-  <aside class="sidebar" id="sidebar" aria-label="Section navigation">
-    <button class="nav-close" id="navClose" type="button" aria-label="Close navigation">✕</button>
-    <div class="sidebar__inner">
-      <nav>
-        <div class="nav__title">Portfolio docs</div>
-        <ul class="nav">
-          <li><a class="nav__link active" href="#intro">Intro to RAKTAPYAS</a></li>
-          <li><a class="nav__link" href="#about">What is RAKTAPYAS?</a></li>
-          <li><a class="nav__link" href="#quickstart">Quick Start</a></li>
-          <li><a class="nav__link" href="#skills">Skills</a></li>
-          <li><a class="nav__link" href="#showroom">Effects Showroom</a></li>
-          <li><a class="nav__link" href="#work">Deployed Artifacts</a></li>
-          <li><a class="nav__link" href="#chronicle">Chronicle</a></li>
-          <li><a class="nav__link" href="#contact">Contact</a></li>
-          <li><a class="nav__link" href="#resume">Full Dossier</a></li>
-        </ul>
-      </nav>
+<main id="main">
+  <section class="hero" id="top">
+    <a class="hero-badge" href="#work"><b>Portfolio 7.0</b> — open to work <span>→</span></a>
+    <div class="hero-art-wrap">
+      <div class="hero-art" id="heroPre" role="img" aria-label="RAKTAPYAS pixel wordmark"></div>
     </div>
-  </aside>
-
-  <main class="main" id="content">
-    <article class="prose">
-
-      <!-- ================= HERO ================= -->
-      <section id="intro" class="hero">
-        <div class="hero__frame" id="heroFrame" tabindex="0" role="button" aria-label="Replay the terminal decrypt animation">
-          <div class="hero__bar">
-            <span class="hero__dot" aria-hidden="true"></span>
-            <span class="hero__dot" aria-hidden="true"></span>
-            <span class="hero__dot" aria-hidden="true"></span>
-            <span class="hero__title">raktapyas@void — zsh — 80×24</span>
-          </div>
-          <div class="hero__screen">
-            <div class="fx-screen" id="heroPre" role="img" aria-label="RAKTAPYAS rendered as ASCII art"></div>
-          </div>
-        </div>
-        <p class="hero__eyebrow">Portfolio documentation · build 6.0</p>
-        <h1>Basudev Dhakal <span class="hero__alias">aka RAKTAPYAS</span></h1>
-        <p class="hero__lead">Full-stack &amp; backend operator. Six years forging Laravel cores, Filament consoles, Docker runtimes and database command into production systems that stay up.</p>
-        <div class="actions">
-          <a class="md-button md-button--primary" href="#work">View artifacts</a>
-          <a class="md-button" href="#showroom">Try effects</a>
-          <a class="md-button" href="#contact">Open a channel</a>
-        </div>
-      </section>
-
-      <!-- ================= ABOUT ================= -->
-      <section id="about">
-        <h2>What is RAKTAPYAS?</h2>
-        <p><strong>RAKTAPYAS</strong> is the working alias of <strong>Basudev Dhakal</strong>, a full-stack / backend developer based in Nepal. The name is a banner, not a mystery: six years of production Laravel, typed into a terminal at blade speed.</p>
-        <p>Current post: <strong>Megasoft Pvt. Ltd.</strong>, 2020 → present. The work spans enterprise platforms, high-security back offices, international service portals and e-commerce systems — shipped, indexed and still running.</p>
-        <ul class="features">
-          <li>Laravel core architecture, Eloquent modelling and Breeze / Sanctum auth.</li>
-          <li>Filament (TALL) admin consoles with custom metrics, filters and CRUD.</li>
-          <li>Docker &amp; Laravel Sail runtimes; Linux-native workflow on LazyVim.</li>
-          <li>MySQL &amp; PostgreSQL schema isolation, query surgery and optimisation.</li>
-          <li>Vue.js + Tailwind CSS frontends wired to blade-speed backends.</li>
-          <li>Ten live production artifacts across logistics, commerce, health and travel.</li>
-        </ul>
-        <div class="admonition">
-          <div class="admonition__title">Status</div>
-          <p><strong>Open to work.</strong> Web development / IT support roles where six years of backend sorcery compounds. <a href="#contact">Open a channel →</a></p>
-        </div>
-      </section>
-
-      <!-- ================= QUICK START ================= -->
-      <section id="quickstart">
-        <h2>Quick Start</h2>
-        <p>Two ways to read this dossier: the rendered docs below, or the terminal-style commands the original site answered to.</p>
-        <div class="codeblock">
-          <div class="codeblock__head"><span>shell</span><button class="copy" type="button" data-copy="qs1">Copy</button></div>
-          <pre id="qs1"><code><span class="tok-com"># identity, one line at a time</span>
-<span class="tok-cmd">echo</span> <span class="tok-str">"Basudev Dhakal"</span> | <span class="tok-cmd">tte</span> decrypt
-
-<span class="tok-com"># the full dossier</span>
-<span class="tok-cmd">cat</span> resume.md | <span class="tok-cmd">tte</span> beams</code></pre>
-        </div>
-        <div class="codeblock">
-          <div class="codeblock__head"><span>commands</span><button class="copy" type="button" data-copy="qs2">Copy</button></div>
-          <pre id="qs2"><code>whoami      identity, class, primary arts, status
-skills      the arsenal, scored
-work        ten deployed artifacts
-chronicle   experience &amp; education
-contact     encrypted channels
-resume      the full dossier</code></pre>
-        </div>
-        <div class="admonition tip">
-          <div class="admonition__title">Try the showroom</div>
-          <p>The <a href="#showroom">Effects Showroom</a> runs four live terminal effects in the browser — decrypt, matrix, beams and waves — with no dependencies and no build step.</p>
-        </div>
-      </section>
-
-      <!-- ================= SKILLS ================= -->
-      <section id="skills">
-        <h2>Skills</h2>
-        <p>Scored out of 100, measured in production rather than tutorials.</p>
-        <div class="skills" id="skillsGrid"></div>
-      </section>
-
-      <!-- ================= SHOWROOM ================= -->
-      <section id="showroom">
-        <h2>Effects Showroom</h2>
-        <p>A small homage to <a href="https://github.com/ChrisBuilds/terminaltexteffects" target="_blank" rel="noopener">TerminalTextEffects</a>. Each effect is rendered character-by-character in vanilla JavaScript — no canvas, no libraries, no build step. Click any tab to replay it.</p>
-        <div class="showroom">
-          <div class="showroom__tabs" role="tablist" aria-label="Terminal text effects">
-            <button class="fx-btn active" type="button" role="tab" aria-selected="true" aria-controls="showroomPanel" data-effect="decrypt">Decrypt</button>
-            <button class="fx-btn" type="button" role="tab" aria-selected="false" aria-controls="showroomPanel" data-effect="matrix">Matrix</button>
-            <button class="fx-btn" type="button" role="tab" aria-selected="false" aria-controls="showroomPanel" data-effect="beams">Beams</button>
-            <button class="fx-btn" type="button" role="tab" aria-selected="false" aria-controls="showroomPanel" data-effect="waves">Waves</button>
-            <button class="fx-btn fx-btn--ghost" type="button" id="fxReplay">↻ Replay</button>
-          </div>
-          <div class="showroom__screen" id="showroomPanel" role="tabpanel">
-            <div class="fx-screen" id="showroomPre" role="img" aria-label="Live terminal text effect"></div>
-          </div>
-          <div class="showroom__meta">
-            <span id="fxDesc">Movie-style ciphertext resolves into the name, left to right.</span>
-            <span>engine: <b>vanilla JS</b> · palette: <b>crimson</b> · fps: <b>~30</b></span>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= WORK ================= -->
-      <section id="work">
-        <h2>Deployed Artifacts</h2>
-        <p>Ten production systems, each one live. Ordered by the order they were bound to the void, not by importance.</p>
-        <div class="cards" id="workGrid"></div>
-      </section>
-
-      <!-- ================= CHRONICLE ================= -->
-      <section id="chronicle">
-        <h2>Chronicle</h2>
-        <div class="timeline">
-          <div class="timeline__item">
-            <div class="timeline__head">
-              <h3 class="timeline__title">Megasoft Pvt. Ltd. — Full-stack / Backend</h3>
-              <time class="timeline__time">2020 → present</time>
-            </div>
-            <ul>
-              <li>Architected and optimised enterprise platforms on Laravel core.</li>
-              <li>High-security back-office consoles with Filament — custom metrics, CRUD filters.</li>
-              <li>Unified team runtimes via Docker &amp; Laravel Sail.</li>
-              <li>Full-lifecycle database command: MySQL &amp; PostgreSQL — schema isolation, query surgery.</li>
-              <li>Modern interfaces with Vue.js + Tailwind CSS; edits at blade-speed on LazyVim / Linux.</li>
-            </ul>
-          </div>
-          <div class="timeline__item">
-            <div class="timeline__head">
-              <h3 class="timeline__title">Triton International College — +2</h3>
-              <time class="timeline__time">2012 → 2014</time>
-            </div>
-            <p>Higher secondary education.</p>
-          </div>
-          <div class="timeline__item">
-            <div class="timeline__head">
-              <h3 class="timeline__title">Greatwall International School — SLC</h3>
-              <time class="timeline__time">2010 → 2012</time>
-            </div>
-            <p>School leaving certificate.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= CONTACT ================= -->
-      <section id="contact">
-        <h2>Contact</h2>
-        <p>The direct number stays sealed. The channels below are the only doors — click a code to decrypt it.</p>
-        <div class="channels">
-          <div class="qr-card" role="button" tabindex="0" aria-pressed="false" aria-label="Decrypt WhatsApp QR code">
-            <span class="qr-card__label">Channel I · WhatsApp</span>
-            <span class="qr-card__imgwrap">
-              <img src="assets/whatsapp-qr.png" alt="WhatsApp QR code" loading="lazy">
-              <span class="qr-card__lock">ENCRYPTED · CLICK</span>
-            </span>
-            <small class="qr-card__hint">direct line — sealed by blood</small>
-          </div>
-          <div class="qr-card" role="button" tabindex="0" aria-pressed="false" aria-label="Decrypt Discord QR code">
-            <span class="qr-card__label">Channel II · Discord</span>
-            <span class="qr-card__imgwrap">
-              <img src="assets/discord-qr.png" alt="Discord QR code" loading="lazy">
-              <span class="qr-card__lock">ENCRYPTED · CLICK</span>
-            </span>
-            <small class="qr-card__hint">signal relay — sealed by blood</small>
-          </div>
-        </div>
-        <div class="actions">
-          <a class="md-button md-button--primary" href="mailto:raktapyas@gmail.com">Mail · raktapyas@gmail.com</a>
-          <a class="md-button" href="https://github.com/Raktapyas/portfilo" target="_blank" rel="noopener">GitHub ↗</a>
-          <a class="md-button" href="https://raktapyas.github.io/portfilo" target="_blank" rel="noopener">Live site ↗</a>
-        </div>
-        <div class="admonition warn">
-          <div class="admonition__title">Sealed channel</div>
-          <p>▮ The direct number stays sealed — the channels above are the only doors.</p>
-        </div>
-      </section>
-
-      <!-- ================= RESUME ================= -->
-      <section id="resume">
-        <h2>Full Dossier</h2>
-        <p>The complete curriculum vitae, in one collapsible block.</p>
-        <details class="dossier">
-          <summary>Open the dossier — curriculum vitae</summary>
-          <div class="dossier__body">
-            <dl class="kv">
-              <dt>Target</dt>
-              <dd>Web development / IT support — where six years of sorcery compounds.</dd>
-            </dl>
-            <dl class="kv">
-              <dt>Summary</dt>
-              <dd>Versatile backend &amp; full-stack developer. Laravel core architecture, Breeze auth, Filament (TALL) admin panels, Docker &amp; Sail. Linux-native. MySQL / PostgreSQL specialist. Vue.js + Tailwind frontend integrations.</dd>
-            </dl>
-            <dl class="kv">
-              <dt>Experience</dt>
-              <dd>Megasoft Pvt. Ltd. — Full-stack / Backend, 2020 → present.</dd>
-            </dl>
-            <dl class="kv">
-              <dt>Proof</dt>
-              <dd>Ten live production artifacts — see <a href="#work">Deployed Artifacts</a>.</dd>
-            </dl>
-            <dl class="kv">
-              <dt>Education</dt>
-              <dd>Triton International College (+2, 2012–2014) · Greatwall International School (SLC, 2010–2012).</dd>
-            </dl>
-            <dl class="kv">
-              <dt>Soft arts</dt>
-              <dd>Technical problem solving · stakeholder collaboration · relentless learning.</dd>
-            </dl>
-            <dl class="kv">
-              <dt>Reach</dt>
-              <dd><a href="mailto:raktapyas@gmail.com">raktapyas@gmail.com</a> · <a href="https://raktapyas.github.io/portfilo" target="_blank" rel="noopener">raktapyas.github.io/portfilo</a></dd>
-            </dl>
-          </div>
-        </details>
-      </section>
-
-    </article>
-
-    <footer class="footer">
-      <div class="footer__nav">
-        <a class="footer__link" href="#contact"><small>Previous</small>Contact</a>
-        <a class="footer__link footer__link--next" href="#intro"><small>Back to</small>Intro to RAKTAPYAS</a>
-      </div>
-      <div class="footer__meta">
-        <span>RAKTAPYAS://DOCS · build 6.0 · <span id="year">2026</span></span>
-        <span>Rendered in the browser · no trackers · no build step · <a href="https://github.com/ChrisBuilds/terminaltexteffects" target="_blank" rel="noopener">TTE-inspired</a></span>
-      </div>
-    </footer>
-  </main>
-
-  <aside class="toc" aria-label="On this page">
-    <div class="toc__inner">
-      <div class="toc__title">On this page</div>
-      <ul id="tocList"></ul>
+    <h1>Full-stack &amp; backend developer<br> building systems that <em>stay live</em>.</h1>
+    <p class="hero-sub">Six years forging Laravel cores, Filament consoles, Docker runtimes and database command into production systems.</p>
+    <div class="hero-actions">
+      <a class="btn btn-brand" href="#work">
+        <svg class="fill" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1 1 8l7 7 7-7-7-7Zm0 2.8L12.2 8 8 12.2 3.8 8 8 3.8Z"/></svg>
+        View artifacts
+      </a>
+      <a class="btn" href="#contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16v16H4z"/><path d="m4 7 8 6 8-6"/></svg>
+        Open a channel
+      </a>
     </div>
-  </aside>
-</div>
+    <p class="hero-meta">BASUDEV DHAKAL · RAKTAPYAS · NEPAL</p>
+  </section>
+
+  <section class="section" id="about">
+    <div class="section-head">
+      <span class="eyebrow">01 / About</span>
+      <h2>What I do</h2>
+    </div>
+    <div class="feature-grid">
+      <article class="feature">
+        <svg class="feature-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M1 1h6v6H1zM9 1h6v6H9zM1 9h6v6H1zM9 9h6v6H9z"/></svg>
+        <h3>Backend architecture</h3>
+        <p>Laravel core, Eloquent modelling, Breeze / Sanctum auth and API design built to survive production traffic.</p>
+      </article>
+      <article class="feature">
+        <svg class="feature-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M1 2h14v2H1zM1 4h2v10H1zM13 4h2v10h-2zM3 12h10v2H3zM4 6h3v2H4zM9 6h3v2H9z"/></svg>
+        <h3>Admin consoles</h3>
+        <p>Filament (TALL) panels with custom metrics, filters, CRUD and role-aware workflows for high-security back offices.</p>
+      </article>
+      <article class="feature">
+        <svg class="feature-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M2 2h12v3H2zM2 7h12v3H2zM2 12h12v2H2zM4 3h2v1H4zM4 8h2v1H4zM4 12h2v1H4z"/></svg>
+        <h3>Runtime &amp; infrastructure</h3>
+        <p>Docker and Laravel Sail runtimes, Linux-native workflows and reproducible environments for the whole team.</p>
+      </article>
+      <article class="feature">
+        <svg class="feature-icon" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true"><path fill="currentColor" d="M3 1h10v2H3zM2 3h2v2H2zM12 3h2v2h-2zM2 7h2v2H2zM12 7h2v2h-2zM2 11h2v2H2zM12 11h2v2h-2zM3 13h10v2H3z"/></svg>
+        <h3>Data &amp; interfaces</h3>
+        <p>MySQL and PostgreSQL schema isolation, query surgery and optimisation; Vue.js + Tailwind frontends wired to the backend.</p>
+      </article>
+    </div>
+    <div class="status">
+      <span class="status-dot" aria-hidden="true"></span>
+      <p><strong>Open to work.</strong> Web development / IT support roles where six years of backend experience compounds. <a href="#contact">Open a channel →</a></p>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="section-head">
+      <span class="eyebrow">02 / Arsenal</span>
+      <h2>Skills</h2>
+    </div>
+    <p class="section-lede">Scored out of 100, measured in production rather than tutorials.</p>
+    <div class="skills-grid" id="skillsGrid"></div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="section-head">
+      <span class="eyebrow">03 / Selected work</span>
+      <h2>Deployed artifacts</h2>
+    </div>
+    <p class="section-lede">Ten production systems, each one live.</p>
+    <div class="work-grid" id="workGrid"></div>
+  </section>
+
+  <section class="section" id="effects">
+    <div class="section-head">
+      <span class="eyebrow">04 / Terminal</span>
+      <h2>Live rendering</h2>
+    </div>
+    <p class="section-lede">Four text effects rendered character-by-character in vanilla JavaScript. Click a tab to replay.</p>
+    <div class="terminal">
+      <div class="terminal__bar" role="tablist" aria-label="Text effects">
+        <button class="fx-btn active" type="button" role="tab" aria-selected="true" aria-controls="fxPanel" data-effect="decrypt">Decrypt</button>
+        <button class="fx-btn" type="button" role="tab" aria-selected="false" aria-controls="fxPanel" data-effect="rain">Rain</button>
+        <button class="fx-btn" type="button" role="tab" aria-selected="false" aria-controls="fxPanel" data-effect="beams">Beams</button>
+        <button class="fx-btn" type="button" role="tab" aria-selected="false" aria-controls="fxPanel" data-effect="waves">Waves</button>
+        <button class="fx-btn fx-btn--ghost" type="button" id="fxReplay">↻ Replay</button>
+      </div>
+      <div class="terminal__screen" id="fxPanel" role="tabpanel">
+        <div class="fx-screen" id="showroomPre" role="img" aria-label="Live text effect"></div>
+      </div>
+      <div class="terminal__meta">
+        <span id="fxDesc">Ciphertext resolves into the wordmark, left to right.</span>
+        <span>engine: <b>vanilla JS</b> · palette: <b>crimson</b> · fps: <b>~30</b></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="chronicle">
+    <div class="section-head">
+      <span class="eyebrow">05 / Timeline</span>
+      <h2>Chronicle</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline__item">
+        <div class="timeline__head">
+          <h3 class="timeline__title">Megasoft Pvt. Ltd. — Full-stack / Backend</h3>
+          <time class="timeline__time">2020 → present</time>
+        </div>
+        <ul>
+          <li>Architected and optimised enterprise platforms on Laravel core.</li>
+          <li>High-security back-office consoles with Filament — custom metrics, CRUD filters.</li>
+          <li>Unified team runtimes via Docker &amp; Laravel Sail.</li>
+          <li>Full-lifecycle database command: MySQL &amp; PostgreSQL — schema isolation, query surgery.</li>
+          <li>Modern interfaces with Vue.js + Tailwind CSS; Linux-native workflow.</li>
+        </ul>
+      </div>
+      <div class="timeline__item">
+        <div class="timeline__head">
+          <h3 class="timeline__title">Triton International College — +2</h3>
+          <time class="timeline__time">2012 → 2014</time>
+        </div>
+        <p>Higher secondary education.</p>
+      </div>
+      <div class="timeline__item">
+        <div class="timeline__head">
+          <h3 class="timeline__title">Greatwall International School — SLC</h3>
+          <time class="timeline__time">2010 → 2012</time>
+        </div>
+        <p>School leaving certificate.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="section-head">
+      <span class="eyebrow">06 / Contact</span>
+      <h2>Open a channel</h2>
+    </div>
+    <p class="section-lede">The direct number stays private. Scan or click a code to reveal a channel.</p>
+    <div class="contact-grid">
+      <div class="qr-card" role="button" tabindex="0" aria-pressed="false" aria-label="Reveal WhatsApp QR code">
+        <span class="qr-card__label">Channel I · WhatsApp</span>
+        <span class="qr-card__imgwrap">
+          <img src="assets/whatsapp-qr.png" alt="WhatsApp QR code" loading="lazy">
+          <span class="qr-card__lock">HIDDEN · CLICK</span>
+        </span>
+        <small class="qr-card__hint">direct line</small>
+      </div>
+      <div class="qr-card" role="button" tabindex="0" aria-pressed="false" aria-label="Reveal Discord QR code">
+        <span class="qr-card__label">Channel II · Discord</span>
+        <span class="qr-card__imgwrap">
+          <img src="assets/discord-qr.png" alt="Discord QR code" loading="lazy">
+          <span class="qr-card__lock">HIDDEN · CLICK</span>
+        </span>
+        <small class="qr-card__hint">signal relay</small>
+      </div>
+      <div class="contact-panel">
+        <dl class="contact-row"><dt>Email</dt><dd><a href="mailto:raktapyas@gmail.com">raktapyas@gmail.com</a></dd></dl>
+        <dl class="contact-row"><dt>Location</dt><dd>Nepal · NPT (UTC+5:45)</dd></dl>
+        <dl class="contact-row"><dt>Status</dt><dd>Open to work</dd></dl>
+        <dl class="contact-row"><dt>Focus</dt><dd>Web development / IT support</dd></dl>
+      </div>
+    </div>
+    <div class="contact-actions">
+      <a class="btn btn-brand" href="mailto:raktapyas@gmail.com">Email me</a>
+      <a class="btn" href="https://github.com/Raktapyas/portfilo" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://raktapyas.github.io/portfilo" target="_blank" rel="noopener">Live site ↗</a>
+    </div>
+  </section>
+
+  <section class="section" id="resume">
+    <div class="section-head">
+      <span class="eyebrow">07 / Dossier</span>
+      <h2>Full dossier</h2>
+    </div>
+    <p class="section-lede">The complete curriculum vitae, in one collapsible block.</p>
+    <details class="dossier">
+      <summary>Open the dossier — curriculum vitae</summary>
+      <div class="dossier__body">
+        <dl class="kv">
+          <dt>Target</dt>
+          <dd>Web development / IT support roles where six years of backend experience compounds.</dd>
+        </dl>
+        <dl class="kv">
+          <dt>Summary</dt>
+          <dd>Versatile backend &amp; full-stack developer. Laravel core architecture, Breeze auth, Filament (TALL) admin panels, Docker &amp; Sail. Linux-native. MySQL / PostgreSQL specialist. Vue.js + Tailwind frontend integrations.</dd>
+        </dl>
+        <dl class="kv">
+          <dt>Experience</dt>
+          <dd>Megasoft Pvt. Ltd. — Full-stack / Backend, 2020 → present.</dd>
+        </dl>
+        <dl class="kv">
+          <dt>Proof</dt>
+          <dd>Ten live production artifacts — see <a href="#work">Deployed Artifacts</a>.</dd>
+        </dl>
+        <dl class="kv">
+          <dt>Education</dt>
+          <dd>Triton International College (+2, 2012–2014) · Greatwall International School (SLC, 2010–2012).</dd>
+        </dl>
+        <dl class="kv">
+          <dt>Soft skills</dt>
+          <dd>Technical problem solving · stakeholder collaboration · relentless learning.</dd>
+        </dl>
+        <dl class="kv">
+          <dt>Reach</dt>
+          <dd><a href="mailto:raktapyas@gmail.com">raktapyas@gmail.com</a> · <a href="https://raktapyas.github.io/portfilo" target="_blank" rel="noopener">raktapyas.github.io/portfilo</a></dd>
+        </dl>
+      </div>
+    </details>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <a class="footer-brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+        <path fill="currentColor" d="M1 1h5v5H1zM10 1h5v5h-5zM6 6h4v4H6zM1 10h5v5H1zM10 10h5v5h-5z"/>
+      </svg>
+      RAKTAPYAS
+    </a>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="#resume">Dossier</a>
+    </nav>
+    <div class="footer-note">
+      <span><i aria-hidden="true"></i> Available for work · 2026</span>
+      <span>© <span id="year">2026</span> Basudev Dhakal · Built with vanilla HTML, CSS &amp; JavaScript.</span>
+    </div>
+  </div>
+</footer>
 
 <script>
 /* ============================================================
-   RAKTAPYAS://DOCS — runtime
+   RAKTAPYAS — runtime
    ============================================================ */
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -1006,17 +887,18 @@ const workGrid=$('#workGrid');
 if(workGrid){
   workGrid.innerHTML=WORK.map(([title,domain,url,tag,desc],i)=>`
     <article class="card">
-      <span class="card__idx">ARTIFACT_${String(i+1).padStart(2,'0')}</span>
-      <span class="card__live"><i aria-hidden="true"></i>LIVE</span>
+      <div class="card__top">
+        <span class="card__idx">ARTIFACT_${String(i+1).padStart(2,'0')}</span>
+        <span class="card__live"><i aria-hidden="true"></i>LIVE</span>
+      </div>
       <h3 class="card__title">${title}</h3>
       <span class="card__tag">${tag}</span>
       <p class="card__desc">${desc}</p>
       <a class="card__link" href="${url}" target="_blank" rel="noopener">${domain} <span aria-hidden="true">↗</span></a>
     </article>`).join('');
 }
-/* ==SCRIPT-PART-2== */
 
-/* ---------- ascii font (same glyphs as the original banner) ---------- */
+/* ---------- ascii font ---------- */
 const F={
   R:['██████╗ ','██╔══██╗','██████╔╝','██╔══██╗','██║  ██║','╚═╝  ╚═╝'],
   A:[' █████╗ ','██╔══██╗','███████║','██╔══██║','██║  ██║','╚═╝  ╚═╝'],
@@ -1030,7 +912,7 @@ const NAME='RAKTAPYAS';
 const ROWS=[0,1,2,3,4,5].map(i=>NAME.split('').map(c=>F[c][i]).join(' '));
 
 /* ---------- color helpers ---------- */
-const GRADIENT=['#7a0a20','#ff3b5c','#ffffff'];
+const GRADIENT=['#ffb3c1','#e01e37','#7a0a20'];
 const CIPHER='!<>-_=+*^?#{}[]()/|;:';
 const CIPHER_COLORS=['#7a0a20','#c41e3a','#ff6b81'];
 const RAIN='25Z*):.=+-|_ｦｱｳｴｵｶｷｹｺｻｼｽｾｿﾀﾂﾃﾅﾆﾇﾈﾊﾋﾎﾏﾐﾑﾒﾓﾔﾕﾗﾘﾜ';
@@ -1079,7 +961,7 @@ class TerminalFX{
           x,
           y,
           space:line[x]===' ',
-          final:gradientColor(GRADIENT,(x/(line.length-1))*.65+(y/(ROWS.length-1))*.35)
+          final:gradientColor(GRADIENT,(y/(ROWS.length-1))*.85+(x/(line.length-1))*.15)
         });
       }
       this.el.appendChild(row);
@@ -1137,7 +1019,7 @@ class TerminalFX{
 /* ---------- effects ---------- */
 const EFFECTS={
   decrypt:{
-    desc:'Movie-style ciphertext resolves into the name, left to right.',
+    desc:'Ciphertext resolves into the wordmark, left to right.',
     init(fx){
       const maxDelay=1100;
       for(const c of fx.cells){
@@ -1165,14 +1047,14 @@ const EFFECTS={
         }else{
           const p=Math.min(1,(t-c.delay)/320);
           c.el.textContent=c.ch;
-          c.el.style.color=css(mix(hexToRgb('#00ff00'),c.final,p));
+          c.el.style.color=css(mix(hexToRgb('#ff3b5c'),c.final,p));
         }
       }
       return t>maxEnd+120;
     }
   },
-  matrix:{
-    desc:'Digital rain falls, then the glyphs settle into place.',
+  rain:{
+    desc:'Crimson rain falls, then the glyphs settle into place.',
     init(fx){
       fx.clear();
       fx._cols=Array.from({length:fx.cols},()=>({
@@ -1198,12 +1080,12 @@ const EFFECTS={
           if(d>=0&&d<col.trail){
             if(refresh)c.el.textContent=rand(RAIN);
             const p=1-d/col.trail;
-            c.el.style.color=css(mix(hexToRgb('#185318'),hexToRgb('#dbffdb'),p));
+            c.el.style.color=css(mix(hexToRgb('#3a0a14'),hexToRgb('#ffd0d8'),p));
             c.el.style.opacity='1';
           }else if(c.y<head){
             if(refresh)c.el.textContent=Math.random()<.12?rand(RAIN):' ';
-            c.el.style.color='#2a5a2a';
-            c.el.style.opacity='.5';
+            c.el.style.color='#5a1522';
+            c.el.style.opacity='.55';
           }else{
             c.el.textContent=' ';
             c.el.style.opacity='1';
@@ -1217,12 +1099,12 @@ const EFFECTS={
         maxEnd=Math.max(maxEnd,c.delay2+300);
         if(rt<c.delay2){
           if(refresh)c.el.textContent=c.space?' ':rand(RAIN);
-          c.el.style.color='#2a5a2a';
+          c.el.style.color='#5a1522';
           c.el.style.opacity='1';
         }else{
           const p=Math.min(1,(rt-c.delay2)/300);
           c.el.textContent=c.ch;
-          c.el.style.color=css(mix(hexToRgb('#45bf55'),c.final,p));
+          c.el.style.color=css(mix(hexToRgb('#e01e37'),c.final,p));
           c.el.style.opacity='1';
         }
       }
@@ -1230,7 +1112,7 @@ const EFFECTS={
     }
   },
   beams:{
-    desc:'Light beams sweep the grid and leave a cyan-magenta gradient behind.',
+    desc:'Light beams sweep the grid and leave a crimson gradient behind.',
     init(fx){
       fx.clear();
       for(const c of fx.cells){
@@ -1246,7 +1128,7 @@ const EFFECTS={
           const dist=Math.abs(c.x-beamX);
           if(dist<2.2){
             c.el.textContent=c.space?' ':c.ch;
-            c.el.style.color=css(mix(hexToRgb('#ff6b81'),hexToRgb('#ffffff'),1-dist/2.2));
+            c.el.style.color=css(mix(hexToRgb('#ff3b5c'),hexToRgb('#ffffff'),1-dist/2.2));
             c.el.style.opacity='1';
           }else if(c.x<beamX){
             c.el.textContent=c.space?' ':c.ch;
@@ -1271,7 +1153,7 @@ const EFFECTS={
           }else{
             const p=Math.min(1,(t-1200)/500);
             c.el.textContent=c.space?' ':c.ch;
-            c.el.style.color=css(mix(hexToRgb('#ff6b81'),c.final,Math.min(1,p+.2)));
+            c.el.style.color=css(mix(hexToRgb('#ff3b5c'),c.final,Math.min(1,p+.2)));
             c.el.style.opacity='1';
           }
         }
@@ -1305,28 +1187,31 @@ const EFFECTS={
         const y=(1-e)*1.4;
         const x=Math.sin((1-p)*Math.PI*2+c.x*.35)*(1-e)*.5;
         c.el.style.transform=`translate(${x.toFixed(3)}em, ${y.toFixed(3)}em)`;
-        c.el.style.color=css(mix(hexToRgb('#ff6b81'),c.final,Math.min(1,p*1.1)));
+        c.el.style.color=css(mix(hexToRgb('#ff3b5c'),c.final,Math.min(1,p*1.1)));
       }
       return t>maxEnd+100;
     }
   }
 };
-/* ==SCRIPT-PART-3== */
 
 /* ---------- hero ---------- */
 const heroPre=$('#heroPre');
 const heroFx=heroPre?new TerminalFX(heroPre):null;
-const heroFrame=$('#heroFrame');
-if(heroFx&&heroFrame){
+if(heroFx&&heroPre){
   const replay=()=>heroFx.play('decrypt');
-  heroFrame.addEventListener('click',replay);
-  heroFrame.addEventListener('keydown',e=>{
+  heroPre.setAttribute('role','button');
+  heroPre.setAttribute('tabindex','0');
+  heroPre.setAttribute('aria-label','Replay the RAKTAPYAS wordmark animation');
+  heroPre.title='Click to replay';
+  heroPre.style.cursor='pointer';
+  heroPre.addEventListener('click',replay);
+  heroPre.addEventListener('keydown',e=>{
     if(e.key==='Enter'||e.key===' '){e.preventDefault();replay();}
   });
-  setTimeout(replay,350);
+  setTimeout(replay,300);
 }
 
-/* ---------- showroom ---------- */
+/* ---------- effects panel ---------- */
 const showroomPre=$('#showroomPre');
 const showroomFx=showroomPre?new TerminalFX(showroomPre):null;
 const fxButtons=$$('.fx-btn[data-effect]');
@@ -1356,30 +1241,16 @@ if(showroomFx){
       io.disconnect();
     }
   },{threshold:.3});
-  io.observe($('#showroom'));
+  io.observe($('#effects'));
 }
 
-/* ---------- copy buttons ---------- */
-$$('.copy').forEach(btn=>{
-  btn.addEventListener('click',async()=>{
-    const target=document.getElementById(btn.dataset.copy);
-    if(!target)return;
-    const text=target.innerText;
-    try{await navigator.clipboard.writeText(text);}catch(e){}
-    const label=btn.textContent;
-    btn.textContent='Copied';
-    btn.classList.add('done');
-    setTimeout(()=>{btn.textContent=label;btn.classList.remove('done');},1400);
-  });
-});
-
-/* ---------- QR decrypt cards ---------- */
+/* ---------- QR reveal cards ---------- */
 $$('.qr-card').forEach(card=>{
   const toggle=()=>{
     const open=card.classList.toggle('open');
     card.setAttribute('aria-pressed',String(open));
     const lock=card.querySelector('.qr-card__lock');
-    if(lock)lock.textContent=open?'DECRYPTED':'ENCRYPTED · CLICK';
+    if(lock)lock.textContent=open?'REVEALED':'HIDDEN · CLICK';
   };
   card.addEventListener('click',toggle);
   card.addEventListener('keydown',e=>{
@@ -1387,77 +1258,81 @@ $$('.qr-card').forEach(card=>{
   });
 });
 
-/* ---------- clock ---------- */
-const clock=$('#clock');
-const fmt=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Kathmandu',hour12:false,hour:'2-digit',minute:'2-digit',second:'2-digit'});
-function tickClock(){if(clock)clock.innerHTML=`${fmt.format(new Date())} <small>NPT</small>`;}
-tickClock();setInterval(tickClock,1000);
-
-/* ---------- toc + scrollspy ---------- */
-const NAV=[
-  ['intro','Intro to RAKTAPYAS'],
-  ['about','What is RAKTAPYAS?'],
-  ['quickstart','Quick Start'],
-  ['skills','Skills'],
-  ['showroom','Effects Showroom'],
-  ['work','Deployed Artifacts'],
-  ['chronicle','Chronicle'],
-  ['contact','Contact'],
-  ['resume','Full Dossier']
-];
-const tocList=$('#tocList');
-if(tocList){
-  tocList.innerHTML=NAV.map(([id,label])=>`<li><a href="#${id}">${label}</a></li>`).join('');
+/* ---------- mobile menu ---------- */
+const menuBtn=$('#menuBtn');
+const mobileMenu=$('#mobileMenu');
+function closeMenu(){
+  if(!mobileMenu)return;
+  mobileMenu.classList.remove('open');
+  menuBtn?.setAttribute('aria-expanded','false');
+  menuBtn?.setAttribute('aria-label','Open menu');
 }
-$$('.prose section[id] > h2').forEach(h=>{
-  const section=h.closest('section');
-  const a=document.createElement('a');
-  a.className='headerlink';
-  a.href='#'+section.id;
-  a.textContent='¶';
-  a.setAttribute('aria-label','Link to '+section.id);
-  h.appendChild(a);
+menuBtn?.addEventListener('click',()=>{
+  const open=mobileMenu.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded',String(open));
+  menuBtn.setAttribute('aria-label',open?'Close menu':'Open menu');
 });
-const navLinks=$$('.nav__link');
-const tocLinks=$$('#tocList a');
-const sections=NAV.map(([id])=>document.getElementById(id)).filter(Boolean);
-function setActive(id){
-  navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
-  tocLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+id));
-}
-if('IntersectionObserver' in window){
-  const spy=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting)setActive(e.target.id);});
-  },{rootMargin:'-42% 0px -52% 0px',threshold:0});
-  sections.forEach(s=>spy.observe(s));
-}
-tocLinks.forEach(a=>a.addEventListener('click',()=>setActive(a.getAttribute('href').slice(1))));
+mobileMenu?.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
 
-/* ---------- mobile drawer ---------- */
-const navToggle=$('#navToggle');
-const sidebar=$('#sidebar');
-const backdrop=$('#backdrop');
-function closeNav(){
-  if(!sidebar)return;
-  sidebar.classList.remove('open');
-  backdrop?.classList.remove('open');
-  navToggle?.setAttribute('aria-expanded','false');
-  document.body.classList.remove('nav-open');
-}
-navToggle?.addEventListener('click',()=>{
-  const open=sidebar.classList.toggle('open');
-  backdrop?.classList.toggle('open',open);
-  navToggle.setAttribute('aria-expanded',String(open));
-  document.body.classList.toggle('nav-open',open);
-});
-backdrop?.addEventListener('click',closeNav);
-$('#navClose')?.addEventListener('click',closeNav);
-navLinks.forEach(a=>a.addEventListener('click',()=>{
-  if(matchMedia('(max-width:60em)').matches)closeNav();
-}));
-addEventListener('keydown',e=>{if(e.key==='Escape')closeNav();});
+/* ---------- pixel field ---------- */
+const field=$('#pixelField');
+if(field){
+  const ctx=field.getContext('2d');
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  const COLORS=['#e01e37','#ff3b5c','#7a0a20','#ff8fa3','#c41e3a'];
+  let pixels=[];
+  let raf=0;
 
-/* ---------- misc ---------- */
+  function build(){
+    const w=innerWidth,h=innerHeight;
+    field.width=Math.round(w*dpr);
+    field.height=Math.round(h*dpr);
+    field.style.width=w+'px';
+    field.style.height=h+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    const cell=14;
+    const cols=Math.ceil(w/cell),rows=Math.ceil(h/cell);
+    pixels=[];
+    for(let y=0;y<rows;y++){
+      for(let x=0;x<cols;x++){
+        if(Math.random()<.045){
+          pixels.push({
+            x:x*cell+(Math.random()*6-3),
+            y:y*cell+(Math.random()*6-3),
+            s:Math.random()<.15?4:2,
+            c:COLORS[Math.floor(Math.random()*COLORS.length)],
+            a:.08+Math.random()*.32,
+            phase:Math.random()*Math.PI*2,
+            speed:.15+Math.random()*.5
+          });
+        }
+      }
+    }
+  }
+
+  function draw(t){
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    for(const p of pixels){
+      const tw=reduceMotion?1:.65+.35*Math.sin(t/1000*p.speed+p.phase);
+      ctx.globalAlpha=p.a*tw;
+      ctx.fillStyle=p.c;
+      ctx.fillRect(Math.round(p.x),Math.round(p.y),p.s,p.s);
+    }
+    ctx.globalAlpha=1;
+    if(!reduceMotion)raf=requestAnimationFrame(draw);
+  }
+
+  build();
+  if(reduceMotion)draw(0);else raf=requestAnimationFrame(draw);
+  addEventListener('resize',()=>{
+    cancelAnimationFrame(raf);
+    build();
+    if(reduceMotion)draw(0);else raf=requestAnimationFrame(draw);
+  });
+}
+
+/* ---------- year ---------- */
 const year=$('#year');
 if(year)year.textContent=String(new Date().getFullYear());
 </script>
