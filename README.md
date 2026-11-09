@@ -1,16 +1,29 @@
+# RAKTAPYAS://DOCS
 
-<img src="assets/hero.gif" alt="RAKTAPYAS // VOID" width="860">
+TTE-inspired, docs-style portfolio for **Basudev Dhakal** (RAKTAPYAS).
 
-**`RAKTAPYAS://VOID`** — the domain answers only to a voice.
+A single-file, dependency-free site: MkDocs Material "slate" palette, indigo header,
+left sidebar navigation, right-hand table of contents, and a live terminal-text-effects
+showroom (decrypt, matrix, beams, waves) rendered character-by-character in vanilla
+JavaScript.
 
-> **“No one has ever stood atop the heavens before. Not you… or I… or even the
-> gods. But the unbearable vacancy of heaven's throne ends now. 
+## Run
 
+Open `index.html` directly, or serve the folder:
 
-The gate opens when you **speak “namaste”** into the microphone — Chrome or Edge,
-mic permission required. 
+```sh
+python3 -m http.server 8000
+```
 
+Then visit `http://localhost:8000`.
 
+## Structure
 
+- `index.html` — the whole site: styles, content and the effects engine.
+- `assets/` — QR codes plus legacy media from the previous design.
+- `tools/` — legacy generators kept for reference.
 
+## Credit
 
+The visual language and effects are inspired by
+[TerminalTextEffects](https://github.com/ChrisBuilds/terminaltexteffects) by ChrisBuilds.
