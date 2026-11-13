@@ -172,6 +172,7 @@ export default class AsciiEngine {
   resize() {
     if (!this.canvas.isConnected) return this;
 
+    const wasRunning = this._running;
     this._measure();
     this._syncSize();
 
@@ -181,7 +182,7 @@ export default class AsciiEngine {
       if (this._reduced) {
         this._settle();
         this._draw();
-      } else {
+      } else if (wasRunning) {
         this.start();
       }
     } else {
@@ -274,8 +275,8 @@ export default class AsciiEngine {
 
   _syncSize() {
     const rect = this.canvas.getBoundingClientRect();
-    const cssW = Math.max(1, rect.width || this.canvas.clientWidth || this.canvas.width || 1);
-    const cssH = Math.max(1, rect.height || this.canvas.clientHeight || this.canvas.height || 1);
+    const cssW = Math.max(1, rect.width || this.canvas.clientWidth || this._cssW || 1);
+    const cssH = Math.max(1, rect.height || this.canvas.clientHeight || this._cssH || 1);
     const dpr = Math.min(this.options.maxDPR, window.devicePixelRatio || 1);
     const bw = Math.round(cssW * dpr);
     const bh = Math.round(cssH * dpr);
@@ -394,13 +395,17 @@ export default class AsciiEngine {
       return;
     }
 
+    // Cells are not square, so convert the source into cell-space before fitting.
+    const cellAspect = this._cellH / this._cellW;
+    const ew = iw * cellAspect;
+    const eh = ih;
     const scale =
       this.options.fit === 'cover'
-        ? Math.max(width / iw, height / ih)
-        : Math.min(width / iw, height / ih);
+        ? Math.max(width / ew, height / eh)
+        : Math.min(width / ew, height / eh);
 
-    const dw = iw * scale;
-    const dh = ih * scale;
+    const dw = ew * scale;
+    const dh = eh * scale;
 
     ctx.drawImage(image, (width - dw) / 2, (height - dh) / 2, dw, dh);
   }

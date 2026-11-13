@@ -389,13 +389,16 @@ img{max-width:100%}
 .fx-cell{display:inline-block;width:.6em;text-align:center}
 
 /* ASCII canvas — Section 04 / Terminal */
+.terminal__screen{min-height:clamp(10rem,22vw,16rem)}
+.terminal__screen.is-ascii{display:block;padding:0;overflow:hidden}
+.terminal__screen.is-ascii .fx-screen{display:none}
+.terminal__screen.is-ascii .terminal__screen--ascii{display:block}
 .terminal__screen--ascii{
   position:relative;
-  display:block;
+  display:none;
   min-height:clamp(10rem,22vw,16rem);
   padding:0;
   overflow:hidden;
-  border-top:1px solid var(--border-subtle);
   contain:layout paint;
 }
 .ascii-canvas{
@@ -707,23 +710,24 @@ img{max-width:100%}
       <span class="eyebrow">04 / Terminal</span>
       <h2>Live rendering</h2>
     </div>
-    <p class="section-lede">Four text effects and an interactive image-to-ASCII renderer, all in vanilla JavaScript. Move your cursor across the lower panel.</p>
+    <p class="section-lede">An interactive image-to-ASCII renderer, live in vanilla JavaScript. Move your cursor across the canvas, or switch tabs for four text effects.</p>
     <div class="terminal">
-      <div class="terminal__bar" role="tablist" aria-label="Text effects">
-        <button class="fx-btn active" type="button" role="tab" aria-selected="true" aria-controls="fxPanel" data-effect="decrypt">Decrypt</button>
+      <div class="terminal__bar" role="tablist" aria-label="Terminal render modes">
+        <button class="fx-btn active" type="button" role="tab" aria-selected="true" aria-controls="fxPanel" data-effect="ascii">ASCII</button>
+        <button class="fx-btn" type="button" role="tab" aria-selected="false" aria-controls="fxPanel" data-effect="decrypt">Decrypt</button>
         <button class="fx-btn" type="button" role="tab" aria-selected="false" aria-controls="fxPanel" data-effect="rain">Rain</button>
         <button class="fx-btn" type="button" role="tab" aria-selected="false" aria-controls="fxPanel" data-effect="beams">Beams</button>
         <button class="fx-btn" type="button" role="tab" aria-selected="false" aria-controls="fxPanel" data-effect="waves">Waves</button>
         <button class="fx-btn fx-btn--ghost" type="button" id="fxReplay">↻ Replay</button>
       </div>
-      <div class="terminal__screen" id="fxPanel" role="tabpanel">
+      <div class="terminal__screen is-ascii" id="fxPanel" role="tabpanel">
         <div class="fx-screen" id="showroomPre" role="img" aria-label="Live text effect"></div>
-      </div>
-      <div class="terminal__screen terminal__screen--ascii">
-        <canvas id="asciiStage" class="ascii-canvas" data-src="" aria-hidden="true"></canvas>
+        <div class="terminal__screen--ascii">
+          <canvas id="asciiStage" class="ascii-canvas" data-src="" aria-hidden="true"></canvas>
+        </div>
       </div>
       <div class="terminal__meta">
-        <span id="fxDesc">Ciphertext resolves into the wordmark, left to right.</span>
+        <span id="fxDesc">Density-mapped ASCII with pointer scatter and ambient glitches.</span>
         <span>engine: <b>vanilla JS</b> · palette: <b>crimson</b> · fps: <b>~30</b></span>
       </div>
     </div>
@@ -1247,7 +1251,18 @@ const showroomPre=$('#showroomPre');
 const showroomFx=showroomPre?new TerminalFX(showroomPre):null;
 const fxButtons=$$('.fx-btn[data-effect]');
 const fxDesc=$('#fxDesc');
+const fxPanel=$('#fxPanel');
+const ASCII_DESC='Density-mapped ASCII with pointer scatter and ambient glitches.';
 let userPicked=false;
+let asciiMode=true;
+
+function setMode(name){
+  asciiMode=name==='ascii';
+  fxPanel?.classList.toggle('is-ascii',asciiMode);
+  if(fxDesc)fxDesc.textContent=asciiMode?ASCII_DESC:(EFFECTS[name]?.desc||'');
+  window.asciiControl?.setActive(asciiMode);
+}
+
 if(showroomFx){
   fxButtons.forEach(btn=>{
     btn.addEventListener('click',()=>{
@@ -1258,17 +1273,19 @@ if(showroomFx){
         b.classList.toggle('active',on);
         b.setAttribute('aria-selected',String(on));
       });
-      if(fxDesc&&EFFECTS[name])fxDesc.textContent=EFFECTS[name].desc;
-      showroomFx.play(name);
+      setMode(name);
+      if(!asciiMode)showroomFx.play(name);
     });
   });
   $('#fxReplay')?.addEventListener('click',()=>{
     const active=$('.fx-btn.active[data-effect]');
-    if(active)showroomFx.play(active.dataset.effect);
+    if(!active)return;
+    if(active.dataset.effect==='ascii')window.asciiControl?.restart();
+    else showroomFx.play(active.dataset.effect);
   });
   const io=new IntersectionObserver(entries=>{
     if(entries.some(e=>e.isIntersecting)){
-      if(!userPicked)showroomFx.play('decrypt');
+      if(!userPicked&&!asciiMode)showroomFx.play('decrypt');
       io.disconnect();
     }
   },{threshold:.3});
@@ -1371,6 +1388,7 @@ if(year)year.textContent=String(new Date().getFullYear());
   import AsciiEngine from './ascii-engine.js';
 
   const stage = document.getElementById('asciiStage');
+  const fxPanel = document.getElementById('fxPanel');
 
   const renderWordmark = (text = 'RAKTAPYAS', width = 1200, height = 420) => {
     const canvas = document.createElement('canvas');
@@ -1384,8 +1402,8 @@ if(year)year.textContent=String(new Date().getFullYear());
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
 
-    let size = Math.round(height * 0.46);
-    const maxWidth = width * 0.88;
+    let size = Math.round(height * 0.9);
+    const maxWidth = width * 0.9;
 
     do {
       ctx.font = `900 ${size}px "JetBrains Mono", "Courier New", monospace`;
@@ -1400,9 +1418,19 @@ if(year)year.textContent=String(new Date().getFullYear());
     try {
       if (!src) throw new Error('No ASCII source configured');
       await engine.load(src);
+      return false;
     } catch (error) {
-      await engine.load(renderWordmark(text));
+      await engine.load(wordmarkSource(text));
+      return true;
     }
+  };
+
+  const wordmarkSource = (text = 'RAKTAPYAS') => {
+    const rect = stage.getBoundingClientRect();
+    const width = 1200;
+    const ratio = rect.width > 0 && rect.height > 0 ? rect.height / rect.width : 0.35;
+    const height = Math.max(160, Math.round(width * ratio));
+    return renderWordmark(text, width, height);
   };
 
   if (stage) {
@@ -1424,23 +1452,71 @@ if(year)year.textContent=String(new Date().getFullYear());
 
     let loaded = false;
     let visible = false;
+    let fallback = false;
+    let refreshTimer = 0;
+    let active = fxPanel ? fxPanel.classList.contains('is-ascii') : true;
+
+    const sync = () => {
+      if (loaded && visible && active) engine.start();
+      else engine.stop();
+    };
 
     const io = new IntersectionObserver((entries) => {
       visible = entries.some((entry) => entry.isIntersecting);
-      if (!loaded) return;
-      if (visible) engine.start();
-      else engine.stop();
+      sync();
     }, { threshold: 0.15 });
 
     io.observe(stage);
 
+    const ensureSource = async () => {
+      if (!fallback || !loaded) return;
+      const rect = stage.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const want = Math.max(160, Math.round(1200 * (rect.height / rect.width)));
+      const have = engine._image?.height || 0;
+      if (Math.abs(want - have) > 8) {
+        await engine.load(wordmarkSource('RAKTAPYAS'));
+      }
+    };
+
+    window.asciiControl = {
+      setActive(value) {
+        active = Boolean(value);
+        if (!active) {
+          sync();
+          return;
+        }
+        requestAnimationFrame(async () => {
+          await ensureSource();
+          engine.resize();
+          sync();
+        });
+      },
+      restart() {
+        active = true;
+        engine.resize();
+        sync();
+      }
+    };
+
     const boot = async () => {
       if (document.fonts?.ready) await document.fonts.ready;
-      await loadWithFallback(engine, stage.dataset.src, 'RAKTAPYAS');
+      fallback = await loadWithFallback(engine, stage.dataset.src, 'RAKTAPYAS');
       loaded = true;
       window.asciiEngine = engine;
-      if (!visible) engine.stop();
+      sync();
     };
+
+    window.addEventListener('resize', () => {
+      if (!fallback || !loaded) return;
+      clearTimeout(refreshTimer);
+      refreshTimer = setTimeout(async () => {
+        const rect = stage.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        await engine.load(wordmarkSource('RAKTAPYAS'));
+        sync();
+      }, 200);
+    }, { passive: true });
 
     boot();
   }
